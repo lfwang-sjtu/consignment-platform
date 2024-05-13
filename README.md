@@ -21,3 +21,64 @@ financial product consignment platform
 - They support `transactions and redemptions` with users
 - They engage in `consignment fee` settlement with the bank platform
 
+# Object description
+```json
+// IndividualUser
+{
+  "username": "example_user",
+  "password": "example_password",
+  "balance": 10000, // 用户余额
+  "email": "user@example.com",
+  "phone": "1234567890",
+  "realname": "John Doe",
+  "idcard": "123456789012345678", // 身份证
+  "birthDate": "1990-01-01",
+  "address": "123 Main St, City, Country",
+  "joinDate": "2024-01-01",
+  "status": "1", // 1表示正常，0表示封禁
+  "question": "What is your favorite color?", // 找回密码的问题回答
+  "answer": "Blue"
+}
+// PlatformManager
+{
+  "username": "example_user",
+  "password": "example_password",
+  "realname": "John Doe",
+  "email": "user@example.com",
+  "phone": "1234567890"
+}
+// CompanyUser
+{
+  "company": "Vanguard Group",
+  "password": "vanguard123",
+  "username": "vanguard_admin",
+  "email": "admin@vanguard.com",
+  "phone": "800-662-2739",
+  "address": "100 Vanguard Blvd, Malvern, PA, USA",
+  "intro": "Vanguard is one of the world's largest investment companies, offering a large selection of low-cost mutual funds, ETFs, advice, and related services.",
+  "status": "1", // 1表示正常，0表示封禁
+  "agreement": "This agreement outlines the terms and conditions for Vanguard's products to be sold on the platform.",
+  "joinDate": "1975-09-24"
+}
+// Product
+{
+  "name": "Stable Growth Fund",
+  "description": "This fund aims to provide stable growth opportunities through a diversified investment portfolio for long-term returns.",
+  "type": "1", // 1表示基金，2表示存款？
+  "risk": "1", // 1低风险，2中风险，3高风险
+  "rate": "8", // 8%
+  "minInvest": "500", // 购买最低额度
+  "term": "12", // 以month计
+  "manageFee": "1.5", // 平台收取1.5%
+  "status": "1", // 1开放购买，2停止购买，3清算完毕
+  "createDate": "2023-01-15"
+}
+// Transaction
+{
+  "orderDate": "2024-05-13",
+  "type": "1", // 1购买，0赎回
+  "amount": "100",
+  "status": "3", // 1成功，2失败，3待人工处理
+  "note": "du SE du de"
+}
+```
