@@ -62,30 +62,19 @@ financial product consignment platform
 }
 // Product
 {
-  "name": "Stable Growth Fund",
-  "description": "This fund aims to provide stable growth opportunities through a diversified investment portfolio for long-term returns.",
-  "type": "1", // 1表示基金，2表示存款？
-  "risk": "1", // 1低风险，2中风险，3高风险
-  "rate": "8", // 8%
-  "minInvest": "500", // 购买最低额度
-  "term": "12", // 以month计
-  "manageFee": "1.5", // 平台收取1.5%
-  "status": "1", // 1开放购买，2停止购买，3清算完毕
-  "createDate": "2023-01-15"
+    "name": "Stable Growth Fund",
+    "description": "This fund aims to provide stable growth opportunities through a diversified investment portfolio for long-term returns.",
+    "type": 1,
+    "risk": 1,
+    "rate": 0.08,
+    "minInvest": 500.00,
+    "term": 12,
+    "manageFee": 0.015,
+    "status": 1,
+    "createDate": "2023-01-15",
+    "belong": {"id": 1}
 }
 
-{
-  "name": "Stable Growth Fund",
-  "description": "Th",
-  "type": 1,
-  "risk": 1,
-  "rate": 0.08,
-  "minInvest": 500.00,
-  "term": 12,
-  "manageFee": 0.015,
-  "status": 1,
-  "createDate": "2023-01-15"
-}
 // Transaction
 {
   "orderDate": "2024-05-13",
