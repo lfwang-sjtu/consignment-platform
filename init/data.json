@@ -1,0 +1,139 @@
+{
+    "IndividualUser": [
+      {
+        "username": "user1",
+        "password": "password1",
+        "balance": 10000,
+        "email": "user1@example.com",
+        "phone": "0000000000",
+        "realname": "John Doe",
+        "idcard": "123456789012345678",
+        "birthDate": "1990-01-01",
+        "address": "123 Main St, City, Country",
+        "joinDate": "2024-01-01",
+        "status": 1,
+        "question": "What is your favorite color?",
+        "answer": "Blue"
+      },
+      {
+        "username": "user2",
+        "password": "password2",
+        "balance": 10000,
+        "email": "user2@example.com",
+        "phone": "0000000001",
+        "realname": "Jane Smith",
+        "idcard": "234567890123456789",
+        "birthDate": "1992-02-02",
+        "address": "456 Oak St, City, Country",
+        "joinDate": "2024-01-01",
+        "status": 1,
+        "question": "What is your pet's name?",
+        "answer": "Max"
+      },
+      {
+        "username": "user3",
+        "password": "password3",
+        "balance": 10000,
+        "email": "user3@example.com",
+        "phone": "0000000002",
+        "realname": "Alice Johnson",
+        "idcard": "345678901234567890",
+        "birthDate": "1988-03-03",
+        "address": "789 Elm St, City, Country",
+        "joinDate": "2024-01-01",
+        "status": 1,
+        "question": "What is your mother's maiden name?",
+        "answer": "Smith"
+      }
+    ],
+    "PlatformManager": [
+      {
+        "username": "manager1",
+        "password": "admin1",
+        "realname": "John Doe",
+        "email": "user@example.com",
+        "phone": "1234567890"
+      }
+    ],
+    "CompanyUser": [
+      {
+        "company": "Vanguard Group",
+        "password": "vanguard123",
+        "username": "vanguard_admin",
+        "email": "admin@vanguard.com",
+        "phone": "800-662-2739",
+        "address": "100 Vanguard Blvd, Malvern, PA, USA",
+        "intro": "Vanguard is one of the world's largest investment companies, offering a large selection of low-cost mutual funds, ETFs, advice, and related services.",
+        "status": 1,
+        "agreement": "This agreement outlines the terms and conditions for Vanguard's products to be sold on the platform.",
+        "joinDate": "1975-09-24"
+      },
+      {
+        "company": "BlackRock",
+        "password": "blackrock123",
+        "username": "blackrock_admin",
+        "email": "admin@blackrock.com",
+        "phone": "212-810-5300",
+        "address": "55 East 52nd Street, New York, NY, USA",
+        "intro": "BlackRock is a global investment management corporation based in New York City. Founded in 1988.",
+        "status": 1,
+        "agreement": "This agreement outlines the terms and conditions for BlackRock's products to be sold on the platform.",
+        "joinDate": "1988-03-01"
+      }
+    ],
+    "Product": [
+      {
+        "name": "Stable Growth Fund",
+        "description": "This fund aims to provide stable growth opportunities through a diversified investment portfolio for long-term returns.",
+        "type": 1,
+        "risk": 1,
+        "rate": 0.08,
+        "minInvest": 500.00,
+        "term": 12,
+        "manageFee": 0.015,
+        "status": 1,
+        "createDate": "2023-01-15",
+        "belong": {"id": 1}
+      },
+      {
+        "name": "High-Yield Bond Fund",
+        "description": "This fund seeks to provide a high level of current income by investing primarily in high-yield corporate bonds.",
+        "type": 1,
+        "risk": 2,
+        "rate": 0.12,
+        "minInvest": 1000.00,
+        "term": 24,
+        "manageFee": 0.015,
+        "status": 1,
+        "createDate": "2022-11-20",
+        "belong": {"id": 1}
+      },
+      {
+        "name": "Technology Innovation Fund",
+        "description": "This fund aims to capture opportunities in the technology sector by investing in innovative companies with strong growth potential.",
+        "type": 1,
+        "risk": 3,
+        "rate": 0.15,
+        "minInvest": 1000.00,
+        "term": 36,
+        "manageFee": 0.015,
+        "status": 1,
+        "createDate": "2023-03-10",
+        "belong": {"id": 2}
+      },
+      {
+        "name": "Global Equity Fund",
+        "description": "This fund provides exposure to a diversified portfolio of global equities, seeking long-term capital appreciation.",
+        "type": 1,
+        "risk": 2,
+        "rate": 0.07,
+        "minInvest": 1000.00,
+        "term": 24,
+        "manageFee": 0.015,
+        "status": 1,
+        "createDate": "2022-09-05",
+        "belong": {"id": 2}
+      }
+    ]
+}
+  
