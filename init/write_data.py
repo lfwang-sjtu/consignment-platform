@@ -24,7 +24,13 @@ for company_user in data['CompanyUser']:
     print('CompanyUser Response:', response.text)
 
 # 发送 Product 数据
-for company_user in data['Product']:
+for product in data['Product']:
     url = 'http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Product'  # 请替换为 CompanyUser 请求的 URL
-    response = requests.post(url, json=company_user)
+    response = requests.post(url, json=product)
     print('Product Response:', response.text)
+
+# 发送 Transaction 数据
+for transaction in data['Transaction']:
+    url = 'http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction'  # 请替换为 CompanyUser 请求的 URL
+    response = requests.post(url, json=transaction)
+    print('Transaction Response:', response.text)

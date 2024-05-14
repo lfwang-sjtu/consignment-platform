@@ -135,6 +135,35 @@
         "createDate": "2022-09-05",
         "belong": {"id": 2}
       }
+    ],
+    "Transaction": [
+      {
+        "orderDate": "2024-05-13",
+        "type": 1,
+        "amount": 1000,
+        "status": 2,
+        "note": "du SE du de",
+        "buyer": {"id": 1},
+        "item": {"id": 1}
+      },
+      {
+        "orderDate": "2024-05-14",
+        "type": 1,
+        "amount": 100,
+        "status": 2,
+        "note": "du SE du de",
+        "buyer": {"id": 1},
+        "item": {"id": 1}
+      },
+      {
+        "orderDate": "2024-05-15",
+        "type": 1,
+        "amount": 100,
+        "status": 2,
+        "note": "du SE du de",
+        "buyer": {"id": 2},
+        "item": {"id": 2}
+      }
     ]
 }
   

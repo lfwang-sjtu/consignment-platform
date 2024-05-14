@@ -80,7 +80,7 @@ financial product consignment platform
   "orderDate": "2024-05-13",
   "type": "1", // 1购买，0赎回
   "amount": "100",
-  "status": "3", // 1成功，2失败，3待处理
+  "status": "3", // 1待处理，2成功，3失败
   "note": "du SE du de"
 }
 ```
