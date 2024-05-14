@@ -99,3 +99,80 @@ financial product consignment platform
     ]
 }
 ```
+
+### 原子服务
+```
+check_user
+要求用户验证身份，用户输入密码，如果密码正确就进入下一步，否则不能进入下一步
+
+confirm_order
+显示用户目前的账户余额，并向用户确认“购买基金”/“结算基金”的订单，如果用户确认就进入下一步，如果用户取消就回到主页
+
+pay
+向用户展示需要付款的金额，如果用户点击确认，就从用户的账户里扣除金额；如果用户取消就回到主页
+
+add_tx
+向Transaction表里添加一条事务信息，并向用户返回结果（您的要求已经提交，等待处理云云）
+
+earn
+向用户展示获得的收益
+
+check_agreement
+检查公司是否已经签署协议，如果已经签署，那么进入下一步，否则返回主页
+
+submit_product_info
+公司填写基金产品的信息，如果合乎格式，那么进入下一步，否则重新填写或返回主页
+
+check_company
+公司身份验证
+
+submit_agreement
+提交协议
+
+generateFee
+银行生成公司需要付的服务费
+```
+### 编排设计
+```json
+{
+    "Orchestration": [
+        {
+            //买
+            "business": "buy",  
+            //确认订单 验证用户身份 写TX表  减库存
+            "process": ["confirm_order", "check_user", "add_tx"]
+        },
+        {
+            //赎回
+            "business": "refund",
+            "process": ["check_user", "confirm_order", "add_tx"]
+        },
+        {   
+            //上传
+            "business": "uploadProduct",
+            "process": ["check_company", "check_agreement", "submit_product_info"]
+        },
+        {   
+            //代销协议
+            "business": "agreement",
+            "process": ["check_company", "submit_agreement"]
+        },
+        {   
+            //
+            "business": "makeOrder",
+            "process": ["check_company", "update_tx", "pay"]
+        },
+        {   
+            //赎回
+            "business": "redemption",
+            "process": ["check_company", "update_tx", "earn"]
+        },
+        {   
+            //费用结算
+            "business": "fee",
+            "process": ["check_company", "generateFee"]
+        },
+    ]
+}
+
+```
