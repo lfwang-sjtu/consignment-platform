@@ -84,3 +84,18 @@ financial product consignment platform
   "note": "du SE du de"
 }
 ```
+# atomic service orchestration
+```json
+{
+    "Orchestration": [
+        {
+            "business": "buy",
+            "process": ["check_user","confirm_order", "sub_money", "add_tx"]
+        },
+        {
+            "business": "refund",
+            "process": ["check_user", "select_order", "add_money", "add_tx"]
+        },
+    ]
+}
+```
