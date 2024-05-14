@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, List } from "antd";
 const { Text } = Typography;
-
+//
 function ManagerInfo() {
     return (
         <div style={{ padding: "20px" }}>
