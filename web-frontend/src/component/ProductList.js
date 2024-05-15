@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Input, message, Table} from "antd";
 function ProductList() {
     /*
@@ -265,6 +265,53 @@ function ProductList() {
             }
         }
     ]);
+
+    useEffect(() => {
+        const userPurchases = userTxData.map(tx => tx.item);
+        const similarityScores = [];
+
+        const minRisk = Math.min(...productData.map(product => product.risk));
+        const maxRisk = Math.max(...productData.map(product => product.risk));
+        const minRate = Math.min(...productData.map(product => product.rate));
+        const maxRate = Math.max(...productData.map(product => product.rate));
+        const minInvest = Math.min(...productData.map(product => product.minInvest));
+        const maxInvest = Math.max(...productData.map(product => product.minInvest));
+
+        const normalize = (value, min, max) => (value - min) / (max - min);
+
+        productData.forEach(product => {
+            let totalSimilarity = 0;
+
+            userPurchases.forEach(userProduct => {
+                const userRisk = userProduct.risk;
+                const userRate = userProduct.rate;
+                const userMinInvest = userProduct.minInvest;
+
+                const normalizedRisk = normalize(product.risk, minRisk, maxRisk);
+                const normalizedRate = normalize(product.rate, minRate, maxRate);
+                const normalizedMinInvest = normalize(product.minInvest, minInvest, maxInvest);
+
+                const normalizedUserRisk = normalize(userRisk, minRisk, maxRisk);
+                const normalizedUserRate = normalize(userRate, minRate, maxRate);
+                const normalizedUserMinInvest = normalize(userMinInvest, minInvest, maxInvest);
+
+                const distance = Math.sqrt(
+                    Math.pow(normalizedRisk - normalizedUserRisk, 2) +
+                    Math.pow(normalizedRate - normalizedUserRate, 2) +
+                    Math.pow(normalizedMinInvest - normalizedUserMinInvest, 2)
+                );
+                const similarity = 1 / (1 + distance); // 相似度越高，距离越近
+                totalSimilarity += similarity;
+            });
+
+            similarityScores.push({ product, totalSimilarity });
+        });
+
+        similarityScores.sort((a, b) => b.totalSimilarity - a.totalSimilarity);
+
+        const sortedProducts = similarityScores.map(score => score.product);
+        setProductData(sortedProducts);
+    }, [userTxData]);
 
     function handleRowClick(record) {
         message.info("I know you click[" + record.name + "]");
