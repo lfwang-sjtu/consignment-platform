@@ -2,6 +2,10 @@ import {Content, Footer, Header} from "antd/es/layout/layout";
 import {Button, Layout, List, Menu, message, Steps, theme} from "antd";
 import FootInfo from "../component/FootInfo";
 import React, {useState} from "react";
+import CheckUser from "../component/CheckUser";
+import ConfirmOrder from "../component/ConfirmOrder";
+import AddTx from "../component/AddTx";
+import Earn from "../component/Earn";
 
 function ProcessView() {
     const [currentBusiness, setCurrentBusiness] = useState("buy")
@@ -46,6 +50,28 @@ function ProcessView() {
         marginTop: 16,
     };
 
+    function getAtomicService(atomicService) {
+        let result;
+        switch (atomicService) {
+            case 'check_user':
+                result = <CheckUser />;
+                break;
+            case 'confirm_order':
+                result = <ConfirmOrder />;
+                break;
+            case 'add_tx':
+                result = <AddTx />;
+                break;
+            case 'earn':
+                result = <Earn />;
+                break;
+            default:
+                result = <div>Unknown service</div>;
+        }
+        return result;
+    }
+
+
     return(
         <Layout style={{ minHeight: "100vh" }}>
             <Header>
@@ -54,7 +80,7 @@ function ProcessView() {
             <Content style={{ padding: '0 50px', flex: 1 }}>
                 <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
                     <Steps current={current} items={items} />
-                    <div style={contentStyle}>{steps[current].content}</div>
+                    <div style={contentStyle}>{getAtomicService(steps[current].content)}</div>
                     <div
                         style={{
                             marginTop: 24,
