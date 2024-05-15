@@ -22,7 +22,7 @@ function UserInfo() {
         <div>
             <Avatar size={64} icon={<UserOutlined />} />
             <h1>存款：{userInfo.balance}$</h1>
-            <Descriptions title="用户信息">
+            <Descriptions bordered={true} title="用户信息">
                 <Descriptions.Item label="用户名">{userInfo.username}</Descriptions.Item>
                 <Descriptions.Item label="邮箱">{userInfo.email}</Descriptions.Item>
                 <Descriptions.Item label="手机号码">{userInfo.phone}</Descriptions.Item>
