@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Button, Input, message, Table} from "antd";
+import {useNavigate} from "react-router-dom";
 function ProductList() {
     /*
     * 搜索关键字
@@ -265,6 +266,7 @@ function ProductList() {
             }
         }
     ]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const userPurchases = userTxData.map(tx => tx.item);
@@ -315,6 +317,7 @@ function ProductList() {
 
     function handleRowClick(record) {
         message.info("I know you click[" + record.name + "]");
+        navigate("/product_details/" + record.id);
     }
 
     function handleSearch() {
