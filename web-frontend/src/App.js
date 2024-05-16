@@ -12,11 +12,15 @@ function App() {
         <Router>
             <Routes>
                 <Route exact path="/" element={<ManagerView />} />
-                {/* /submit and /check */}
+                {/* param 决定 /submit and /check */}
                 <Route path="/com/agreement/:param" element={<AgreementView />} />
+
                 <Route path="/com/product_submit" element={<ProductView />} />
+
                 <Route path="/com/company_check" element={<CompanyView />} />
-                <Route path="/com/product_fee" element={<FeeView />} />
+
+                <Route path="/com/fee" element={<FeeView />} />
+
                 <Route path="/com/tx_handle" element={<TXView />} />
             </Routes>
         </Router>
