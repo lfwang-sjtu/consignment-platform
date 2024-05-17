@@ -80,7 +80,7 @@ financial product consignment platform
   "orderDate": "2024-05-13",
   "type": "1", // 1购买，0赎回
   "amount": "100",
-  "status": "3", // 1成功，2失败，3待处理
+  "status": "3", // 1购买待处理，2购买成功，3赎回待处理，4赎回成功，5购买失败，6赎回失败
   "note": "du SE du de"
 }
 ```
@@ -98,4 +98,84 @@ financial product consignment platform
         },
     ]
 }
+```
+
+### 原子服务
+```
+check_user
+要求用户验证身份，用户输入密码，如果密码正确就进入下一步，否则不能进入下一步
+
+confirm_order
+显示用户目前的账户余额，并向用户确认“购买基金”/“结算基金”的订单，如果用户确认就进入下一步，如果用户取消就回到主页
+
+add_tx
+向Transaction表里添加一条事务信息，状态为1，并向用户返回结果（您的要求已经提交，等待处理云云）
+
+end_tx
+更改Transaction的状态为3
+
+earn
+向用户展示获得的收益
+
+check_agreement
+检查公司是否已经签署协议，如果已经签署，那么进入下一步，否则返回主页
+
+submit_product_info
+公司填写基金产品的信息，如果合乎格式，那么进入下一步，否则重新填写或返回主页
+
+check_company
+公司身份验证
+
+submit_agreement
+提交协议
+
+generateFee
+银行生成公司需要付的服务费
+
+handle_tx
+读取状态为1，3的事务信息，如果成功，那么设为2或4，否则设置为5或6
+```
+### 编排设计
+```json
+{
+    "Orchestration": [
+        {
+            //买
+            "business": "buy",  
+            //确认订单 验证用户身份 写TX表  减库存
+            "process": ["confirm_order", "check_user", "add_tx"]
+        },
+        {
+            //赎回
+            "business": "refund",
+            "process": ["check_user", "confirm_order", "add_tx"]
+        },
+        {   
+            //上传
+            "business": "uploadProduct",
+            "process": ["check_company", "check_agreement", "submit_product_info"]
+        },
+        {   
+            //代销协议
+            "business": "agreement",
+            "process": ["check_company", "submit_agreement"]
+        },
+        {   
+            //
+            "business": "makeOrder",
+            "process": ["check_company", "update_tx", "pay"]
+        },
+        {   
+            //赎回
+            "business": "redemption",
+            "process": ["check_company", "update_tx", "earn"]
+        },
+        {   
+            //费用结算
+            "business": "fee",
+            "process": ["check_company", "generateFee"]
+        },
+    ]
+}
+
 ```
