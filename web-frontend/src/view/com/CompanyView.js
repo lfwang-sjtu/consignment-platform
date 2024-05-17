@@ -26,10 +26,7 @@ function CompanyView() {
     };
 
     return (
-        <Layout style={{minHeight: "100vh"}}>
-            <Header>
-                <Menu theme="dark" mode="horizontal"/>
-            </Header>
+
             <div>
                 <Descriptions title="Company User Info" bordered>
                     {Object.entries(formData).map(([key, value]) => (
@@ -58,17 +55,7 @@ function CompanyView() {
                     </Form>
                 </Modal>
             </div>
-            <Footer
-                style={{
-                    textAlign: 'center',
-                    position: 'fixed',
-                    bottom: 0,
-                    width: '100%'
-                }}
-            >
-                <FootInfo />
-            </Footer>
-        </Layout>
+
 
     );
 }

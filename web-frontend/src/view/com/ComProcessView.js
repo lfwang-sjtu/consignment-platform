@@ -11,7 +11,7 @@ import TxUpdate from "../../component/com/TxUpdate";
 import Pay from "../../component/com/Pay";
 
 function ComProcessView(){
-    const [currentBusiness, setCurrentBusiness] = useState("makeOrder");
+    const [currentBusiness, setCurrentBusiness] = useState("fee");
     const [process, setProcess] = useState([
         {
             "process": "check_company,check_agreement,submit_product_info",
@@ -34,7 +34,7 @@ function ComProcessView(){
             "id": 4
         },
         {
-            "process": "check_company,generateFee",
+            "process": "check_company,generate_fee",
             "business": "fee",
             "id": 5
         }
