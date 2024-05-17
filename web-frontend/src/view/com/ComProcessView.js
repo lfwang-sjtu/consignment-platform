@@ -10,8 +10,11 @@ import FootInfo from "../../component/FootInfo";
 import TxUpdate from "../../component/com/TxUpdate";
 import Pay from "../../component/com/Pay";
 
+// 原子服务包括：check_company, check_agreement, submit_product_info,
+// submit_agreement, generate_fee, update_tx, pay
+
 function ComProcessView(){
-    const [currentBusiness, setCurrentBusiness] = useState("fee");
+    const [currentBusiness, setCurrentBusiness] = useState("makeOrder");
     const [process, setProcess] = useState([
         {
             "process": "check_company,check_agreement,submit_product_info",
@@ -29,7 +32,7 @@ function ComProcessView(){
             "id": 3
         },
         {
-            "process": "check_company,update_tx,earn",
+            "process": "check_company,update_tx",
             "business": "redemption",
             "id": 4
         },
@@ -279,7 +282,7 @@ function ComProcessView(){
                         <div>
                             {getAtomicService1(current)}
                         </div>
-                        <div>
+                        <div style={{margin: '18px'}}>
                             {current < steps.length - 1 && (
                                 <Button type="primary" onClick={() => next()}>
                                     Next

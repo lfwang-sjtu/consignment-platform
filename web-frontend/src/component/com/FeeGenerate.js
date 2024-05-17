@@ -10,13 +10,14 @@ function FeeGenerate(props) {
         props.setGenerateFeeResult(false);
     }
 
-    //TODO:用于处理每一项
+    //TODO:用于处理每一项Fee的函数
     function handleClick() {
         console.log('click');
     }
 
     // const companyName = localStorage.getItem('company_name');
     const companyName = 'Vanguard Group';
+
     const data = [
         {
             "note": "make money",

@@ -164,9 +164,47 @@ function TXView() {
 
     const columns = [
         {
-            title: 'Message',
-            dataIndex: 'message',
-            key: 'message',
+            title: 'Username',
+            dataIndex: ['buyer', 'username'],
+            key: 'username',
+        },
+        {
+            title: 'Product Name',
+            dataIndex: ['item','name'],
+            key: 'productName',
+        },
+        {
+            title: 'Purchase Amount',
+            dataIndex: 'amount',
+            key: 'amount',
+        },
+        {
+            title: 'Order Date',
+            dataIndex: ['item', 'createDate'],
+            key: 'orderDate',
+        },
+        {
+            title: 'Status',
+            dataIndex: 'status',
+            key: 'status',
+            render: (text, record) => {
+                switch(text) {
+                    case 1:
+                        return <span>购买待处理</span>;
+                    case 2:
+                        return <span>购买成功</span>;
+                    case 3:
+                        return <span>赎回待处理</span>;
+                    case 4:
+                        return <span>赎回成功</span>;
+                    case 5:
+                        return <span>购买失败</span>;
+                    case 6:
+                        return <span>赎回失败</span>;
+                    default:
+                        return <span>未知状态</span>;
+                }
+            }
         },
         {
             title: 'Action',
