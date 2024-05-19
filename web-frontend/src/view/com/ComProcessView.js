@@ -5,15 +5,16 @@ import CompanyCheck from "../../component/com/CompanyCheck";
 import AgreementCheck from "../../component/com/AgreementCheck";
 import AgreementSubmit from "../../component/com/AgreementSubmit";
 import FeeGenerate from "../../component/com/FeeGenerate";
-import {Content, Footer, Header} from "antd/es/layout/layout";
-import FootInfo from "../../component/FootInfo";
+import {Content, Header} from "antd/es/layout/layout";
 import TxUpdate from "../../component/com/TxUpdate";
 import Pay from "../../component/com/Pay";
+import {useNavigate} from "react-router-dom";
 
 // 原子服务包括：check_company, check_agreement, submit_product_info,
 // submit_agreement, generate_fee, update_tx, pay
 
 function ComProcessView(){
+    const navigate = useNavigate();
     const [currentBusiness, setCurrentBusiness] = useState("makeOrder");
     const [process, setProcess] = useState([
         {
@@ -254,22 +255,13 @@ function ComProcessView(){
                     message.success("支付完成！");
                     setCurrent(0);
                     setPayResult(false);
+                    // navigate("/com")
                 }
                 break;
             default:
                 message.info("未知的原子服务！");
         }
     }
-    const { token } = theme.useToken();
-    const contentStyle = {
-        lineHeight: '260px',
-        textAlign: 'center',
-        color: token.colorTextTertiary,
-        backgroundColor: token.colorFillAlter,
-        borderRadius: token.borderRadiusLG,
-        border: `1px dashed ${token.colorBorder}`,
-        marginTop: 16,
-    };
 
     return(
         <Layout style={{ height: '100vh' }}>
@@ -306,20 +298,6 @@ function ComProcessView(){
                         </div>
                 </div>
             </Content>
-            {/*<Footer*/}
-            {/*    style={{*/}
-            {/*        textAlign: 'center',*/}
-            {/*        position: 'fixed',*/}
-            {/*        bottom: 0,*/}
-            {/*        width: '100%',*/}
-            {/*        display: 'flex',*/}
-            {/*        justifyContent: 'center',*/}
-            {/*        alignItems: 'center',*/}
-            {/*        height: '10%'*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <FootInfo/>*/}
-            {/*</Footer>*/}
         </Layout>
     )
 }

@@ -1,9 +1,6 @@
 // 公司填写基金产品的信息，如果合乎格式，那么进入下一步，否则重新填写或返回主页
-
 import {useNavigate} from "react-router-dom";
-import {Button, Form, Input, Layout, Menu} from "antd";
-import {Footer, Header} from "antd/es/layout/layout";
-import FootInfo from "../FootInfo";
+import {Button, Form, Input} from "antd";
 import React from "react";
 
 function ProductInfoSubmit(props){
@@ -81,7 +78,6 @@ function ProductInfoSubmit(props){
                     </Form.Item>
                 </Form>
             </div>
-        // </Layout>
     );
 }
 export default ProductInfoSubmit;
