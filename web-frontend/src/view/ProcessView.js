@@ -9,7 +9,7 @@ import Earn from "../component/Earn";
 import EndTx from "../component/EndTx";
 
 function ProcessView() {
-    const [currentBusiness, setCurrentBusiness] = useState("buy")
+    const [currentBusiness, setCurrentBusiness] = useState("refund")
     const [process, setProcess] = useState([
         {
             "process": "check_user,confirm_order,add_tx",
