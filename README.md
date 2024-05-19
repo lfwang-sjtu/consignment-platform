@@ -148,7 +148,7 @@ handle_tx
         {
             //赎回
             "business": "refund",
-            "process": ["check_user", "confirm_order", "add_tx"]
+            "process": ["check_user", "confirm_order", "earn", "end_tx"]
         },
         {   
             //上传

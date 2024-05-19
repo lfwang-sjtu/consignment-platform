@@ -3,8 +3,13 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import UserView from "./view/UserView";
 import ProductView from "./view/ProductView";
 import ProcessView from "./view/ProcessView";
+import {useState} from "react";
 
 function App() {
+    const [userInfo, setUserInfo] = useState();
+    const [productInfo, setProductInfo] = useState();
+    const [txInfo, setTxInfo] = useState();
+    const [processInfo, setProcessInfo] = useState();
     return (
         <Router>
             <Routes>
