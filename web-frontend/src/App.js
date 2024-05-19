@@ -8,6 +8,10 @@ import MainView from "./view/com/MainView";
 import ManagerView from "./view/ManagerView";
 
 function App() {
+    const [userInfo, setUserInfo] = useState();
+    const [productInfo, setProductInfo] = useState();
+    const [txInfo, setTxInfo] = useState();
+    const [processInfo, setProcessInfo] = useState();
     return (
         <Router>
             <Routes>
@@ -27,6 +31,9 @@ function App() {
                 <Route exact path="/" element={<ManagerView />} />
                 <Route exact path="/process" element={<AtomicService />} />
                 {/* 在这里添加其他路由 */}
+                <Route exact path="/" element={<UserView />} />
+                <Route exact path="/product_details/:id" element={<ProductView />}/>
+                <Route exact path="/process" element={<ProcessView />} />
             </Routes>
         </Router>
     );
