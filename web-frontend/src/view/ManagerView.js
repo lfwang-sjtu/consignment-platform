@@ -8,6 +8,8 @@ import {
 } from "@ant-design/icons";
 import ManagerInfo from "../component/ManagerInfo";
 import FootInfo from "../component/FootInfo";
+import AtomicService from "../component/AtomicService";
+import Orchestration from "../component/Orchestration";
 
 const { Header, Content, Sider, Footer } = Layout;
 
@@ -38,7 +40,7 @@ function ManagerView() {
             case "1":
                 return <div>产品管理内容</div>;
             case "2":
-                return <div>原子服务定制化内容</div>;
+                return <Orchestration />;
             case "3":
                 return <div>验证理财公司内容</div>;
             case "4":
