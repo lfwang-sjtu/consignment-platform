@@ -12,6 +12,8 @@ function CompanyCheck(props) {
     }
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
+        //TODO: 对RMP平台的CompanyUser数据进行处理
+
     }
     return (
         <div style={{minHeight: '70vh', minWidth: '80vh'}}>

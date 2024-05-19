@@ -13,6 +13,8 @@ function FeeGenerate(props) {
     //TODO:用于处理每一项Fee的函数
     function handleClick() {
         console.log('click');
+        //TODO:对RMP平台的Transaction数据进行处理
+
     }
 
     // const companyName = localStorage.getItem('company_name');

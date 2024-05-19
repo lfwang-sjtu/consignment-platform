@@ -15,7 +15,7 @@ import {useNavigate} from "react-router-dom";
 
 function ComProcessView(){
     const navigate = useNavigate();
-    const [currentBusiness, setCurrentBusiness] = useState("makeOrder");
+    const [currentBusiness, setCurrentBusiness] = useState("uploadProduct");
     const [process, setProcess] = useState([
         {
             "process": "check_company,check_agreement,submit_product_info",

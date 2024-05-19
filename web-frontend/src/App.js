@@ -1,14 +1,11 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import AtomicService from "./component/AtomicService";
-import TXView from "./view/com/TXView";
 import AgreementView from "./view/com/AgreementView";
-import CompanyView from "./view/com/CompanyView";
-import FeeView from "./view/com/FeeView";
 import ProcessView from "./view/ProcessView";
 import ComProcessView from "./view/com/ComProcessView";
-import UserView from "./view/UserView";
 import MainView from "./view/com/MainView";
+import ManagerView from "./view/ManagerView";
 
 function App() {
     return (
@@ -24,9 +21,9 @@ function App() {
                 <Route path="/com/agreement/:param" element={<AgreementView />} />
 
 
-                <Route exact path="/" element={<UserView />} />
+                {/*<Route exact path="/" element={<UserView />} />*/}
                 {/*<Route exact path="/product_details/:id" element={<ProductInfoView />}/>*/}
-                <Route exact path="/process" element={<ProcessView />} />
+                {/*<Route exact path="/process" element={<ProcessView />} />*/}
                 <Route exact path="/" element={<ManagerView />} />
                 <Route exact path="/process" element={<AtomicService />} />
                 {/* 在这里添加其他路由 */}

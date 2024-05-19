@@ -11,6 +11,8 @@ function AgreementSubmit(props) {
     }
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
+        //TODO: 对RMP平台的CompanyUser.agreement数据进行处理
+
     }
 
     return (
