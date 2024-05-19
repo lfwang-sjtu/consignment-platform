@@ -9,8 +9,8 @@ response = requests.get(url)
 
 response_data = response.json()
 
-for item in response_data['data']:
-    item['process'] = item['process'].split(',')
+# for item in response_data['data']:
+#     item['process'] = item['process'].split(',')
 
 # 格式化输出响应内容
 print('Orchestration Response:', json.dumps(response_data, indent=4))

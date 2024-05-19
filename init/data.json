@@ -66,7 +66,8 @@
         "intro": "Vanguard is one of the world's largest investment companies, offering a large selection of low-cost mutual funds, ETFs, advice, and related services.",
         "status": 1,
         "agreement": "This agreement outlines the terms and conditions for Vanguard's products to be sold on the platform.",
-        "joinDate": "1975-09-24"
+        "joinDate": "1975-09-24",
+        "manageFee": 0.01
       },
       {
         "company": "BlackRock",
@@ -78,7 +79,8 @@
         "intro": "BlackRock is a global investment management corporation based in New York City. Founded in 1988.",
         "status": 1,
         "agreement": "This agreement outlines the terms and conditions for BlackRock's products to be sold on the platform.",
-        "joinDate": "1988-03-01"
+        "joinDate": "1988-03-01",
+        "manageFee": 0.02
       }
     ],
     "Product": [
@@ -129,10 +131,38 @@
         "rate": 0.07,
         "minInvest": 1000.00,
         "term": 24,
-        "manageFee": 0.015,
         "status": 1,
         "createDate": "2022-09-05",
         "belong": {"id": 2}
+      }
+    ],
+    "Transaction": [
+      {
+        "orderDate": "2024-05-13",
+        "type": 1,
+        "amount": 1000,
+        "status": 2,
+        "note": "du SE du de",
+        "buyer": {"id": 1},
+        "item": {"id": 1}
+      },
+      {
+        "orderDate": "2024-05-14",
+        "type": 1,
+        "amount": 100,
+        "status": 2,
+        "note": "du SE du de",
+        "buyer": {"id": 1},
+        "item": {"id": 1}
+      },
+      {
+        "orderDate": "2024-05-15",
+        "type": 1,
+        "amount": 100,
+        "status": 2,
+        "note": "du SE du de",
+        "buyer": {"id": 2},
+        "item": {"id": 2}
       }
     ]
 }

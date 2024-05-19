@@ -24,4 +24,8 @@ print('CompanyUser Response:', json.dumps(json.loads(response.text), indent=4))
 
 url = 'http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Product'
 response = requests.get(url)
-print('CompanyUser Response:', json.dumps(json.loads(response.text), indent=4))
+print('Product Response:', json.dumps(json.loads(response.text), indent=4))
+
+url = 'http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction'
+response = requests.get(url)
+print('Transaction Response:', json.dumps(json.loads(response.text), indent=4))
