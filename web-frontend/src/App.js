@@ -5,6 +5,7 @@ import UserView from "./view/UserView";
 import ProductView from "./view/ProductView";
 import ProcessView from "./view/ProcessView";
 import {useState} from "react";
+import ManagerView from "./view/ManagerView";
 
 function App() {
     const [userInfo, setUserInfo] = useState();
