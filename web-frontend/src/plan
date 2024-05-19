@@ -1,0 +1,17 @@
+/com/路径下设置各个页面
+
+check_agreement:检查是否有协议，设置两个页面，yes则跳转下一步，no则跳转主页
+
+submit_product_info：填写要上架的产品信息
+
+check_company：公司身份验证（输密码）
+
+submit_agreement：提交协议
+
+generateFee：银行生成公司需要支付的服务费（遍历TX表进行统计）
+
+handle_tx：针对用户的购买和赎回进行处理
+
+//TODO:对应RPM平台数据仓库，进行处理
+
+
