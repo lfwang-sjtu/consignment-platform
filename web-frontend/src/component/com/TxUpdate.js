@@ -236,25 +236,23 @@ function TxUpdate(props) {
             title: 'Action',
             key: 'action',
             render: (text, record) => (
-                <Button onClick={() => handleClick()}>
+                <Button onClick={() => handleClick(record)}>
                     处理按钮
                 </Button>
             ),
         }
     ]
-    const handleClick = () => {
+    const handleClick = (record) => {
         message.info('点击处理');
+        console.log(record);
+        record.type = 2;
         //TODO:对RMP平台的TX数据进行处理，并且修改data进行页面刷新
-        fetch("http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/test1/",{
-            method: "POST",
+        fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/${record.id}`,{
+            method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                "name":"test1",
-                "age":"12",
-                "amount":1123.45,
-            })
+            body: JSON.stringify(record)
         })
             .then((response) => response.json())
             .then((result) => {
