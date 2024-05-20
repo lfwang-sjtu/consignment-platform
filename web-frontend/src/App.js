@@ -6,12 +6,17 @@ import ProcessView from "./view/ProcessView";
 import ComProcessView from "./view/com/ComProcessView";
 import MainView from "./view/com/MainView";
 import ManagerView from "./view/ManagerView";
+import {useState} from "react";
+import UserView from "./view/UserView";
+import ProductView from "./view/ProductView";
 
 function App() {
     const [userInfo, setUserInfo] = useState();
     const [productInfo, setProductInfo] = useState();
     const [txInfo, setTxInfo] = useState();
     const [processInfo, setProcessInfo] = useState();
+
+    //TODO:从RMP获取IndividualUser和CompanyUser信息，存在本地（登录界面）
     return (
         <Router>
             <Routes>

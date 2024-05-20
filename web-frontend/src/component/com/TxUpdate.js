@@ -155,6 +155,7 @@ function TxUpdate(props) {
     //     //
     //     // }
     // ]);
+    // TX数据
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -192,6 +193,7 @@ function TxUpdate(props) {
         props.setTxResult(false);
     }
 
+    // 从本地获取公司信息
     // const companyName = localStorage.getItem('company_name');
     const companyName = 'Vanguard Group';
 

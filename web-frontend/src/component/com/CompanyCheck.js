@@ -1,7 +1,7 @@
 // 公司身份验证
 
-import {Button, Form, Input} from "antd";
-import React from "react";
+import {Button, Form, Input, message} from "antd";
+import React, {useState} from "react";
 
 function CompanyCheck(props) {
     function handleConfirm() {
@@ -10,10 +10,34 @@ function CompanyCheck(props) {
     function cancelConfirm() {
         props.setCheckCompanyResult(false);
     }
+    // const companyInfo = localStorage.getItem('company');
+    const companyInfo = {
+        username: "vanguard_admin",
+        password: "vanguard123"
+    }
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
-        //TODO: 对RMP平台的CompanyUser数据进行处理
-
+        fetch("http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/", {
+            method: "GET",
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                if (Array.isArray(result.data)) {
+                    // Attention，筛选出来的是数组数据
+                    const companyUser = result.data.filter(user => user.username === companyInfo.username);
+                    if(companyUser === undefined) {
+                        message.error("公司不存在");
+                        return;
+                    }
+                    if (companyUser[0].password === values.password) {
+                        message.success("公司信息正确");
+                    } else {
+                        message.error("公司信息错误");
+                    }
+                } else {
+                    console.error("Expected an array but received:", result);
+                }
+            })
     }
     return (
         <div style={{minHeight: '70vh', minWidth: '80vh'}}>
