@@ -61,6 +61,7 @@ function ManagerView() {
             </Header>
             <Content style={{ padding: '0 50px', flex: 1 }}>
                 {renderContent()}
+
             </Content>
             <Footer
                 style={{
