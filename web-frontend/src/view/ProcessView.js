@@ -8,8 +8,7 @@ import AddTx from "../component/AddTx";
 import Earn from "../component/Earn";
 import EndTx from "../component/EndTx";
 
-function ProcessView() {
-    const [currentBusiness, setCurrentBusiness] = useState("refund")
+function ProcessView(props) {
     const [process, setProcess] = useState([
         {
             "process": "check_user,confirm_order,add_tx",
@@ -22,7 +21,7 @@ function ProcessView() {
             "id": 2
         }
     ]);
-    const currentProcess = process.find(item => item.business === currentBusiness)?.process.split(',') || [];
+    const currentProcess = process.find(item => item.business === props.userBusiness)?.process.split(',') || [];
     const steps = currentProcess.map((step, index) => ({
         title: `Step ${index + 1}`,
         content: step,

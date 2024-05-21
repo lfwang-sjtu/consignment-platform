@@ -7,19 +7,38 @@ import ProductList from "../component/ProductList";
 import TransactionList from "../component/TransactionList";
 import UserInfo from "../component/UserInfo";
 
-function UserView() {
-    const [menuKey, setMenuKey] = useState("1");
+function UserView(props) {
+    console.log("props");
+    console.log(props);
+    const [userInfo, setUserInfo] = useState(
+        {
+            "address": "123 Main St, City, Country",
+            "question": "What is your favorite color?",
+            "birthDate": "1990-01-01",
+            "realname": "John Doe",
+            "password": "password1",
+            "joinDate": "2024-01-01",
+            "balance": 10000.0,
+            "answer": "Blue",
+            "phone": "0000000000",
+            "idcard": "123456789012345678",
+            "id": 1,
+            "email": "user1@example.com",
+            "username": "user1",
+            "status": 1
+        }
+    );
 
+    const [menuKey, setMenuKey] = useState("1");
     const handleMenuClick = (key) => {
         setMenuKey(key);
     }
-
     const renderContent = () => {
         switch (menuKey) {
             case "1":
                 return <ProductList />
             case "2":
-                return <TransactionList />
+                return <TransactionList setUserBusiness={props.setUserBusiness}/>
             case "3":
                 return <UserInfo />
             default:

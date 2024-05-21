@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {Content, Footer, Header} from "antd/es/layout/layout";
 import {Button, Descriptions, Layout, Menu} from "antd";
 import FootInfo from "../component/FootInfo";
@@ -6,7 +6,9 @@ import React, {useEffect, useState} from "react";
 import Title from "antd/es/skeleton/Title";
 import Paragraph from "antd/es/skeleton/Paragraph";
 
-function ProductView() {
+function ProductView(props) {
+    console.log(props);
+    const navigate = useNavigate();
     const [product, setProduct] = useState(
         {
             "belong": {
@@ -41,6 +43,12 @@ function ProductView() {
         // Fetch product data based on id
         // setProduct
     }, [id]);
+
+    function handleBuy() {
+        //
+        props.setUserBusiness("buy");
+        navigate("/userprocess");
+    }
 
     return(
         <Layout style={{ minHeight: "100vh" }}>
@@ -82,7 +90,7 @@ function ProductView() {
                                     {product.belong.joinDate}
                                 </Descriptions.Item>
                             </Descriptions>
-                            <Button>购买</Button>
+                            <Button onClick={handleBuy}>购买</Button>
                         </div>
                     ) : (
                         <div>Loading...</div>
