@@ -5,9 +5,11 @@ import {
     MoneyCollectOutlined,
     SnippetsOutlined
 } from "@ant-design/icons";
-import {Avatar, List, Menu} from "antd";
+import {Avatar, Button, List, Menu} from "antd";
+import {useNavigate} from "react-router-dom";
 
-function TransactionList() {
+function TransactionList(props) {
+    const navigate = useNavigate();
     const [userTxData, setUserTxData] = useState([
         {
             "note": "make money",
@@ -184,14 +186,19 @@ function TransactionList() {
         },
     ];
 
-    const onClick = (e) => {
+    const onClickMenu = (e) => {
         console.log('click ', e);
         setCurrent(e.key);
     };
 
+    function handleRefund() {
+        props.setUserBusiness("refund");
+        navigate("/userprocess");
+    }
+
     return(
         <div>
-            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+            <Menu onClick={onClickMenu} selectedKeys={[current]} mode="horizontal" items={items} />
             <List
                 itemLayout="vertical"
                 size="large"
@@ -202,7 +209,7 @@ function TransactionList() {
                         key={item.id}
                     >
                         <List.Item.Meta
-                            avatar={<Avatar src={item.avatar} />}
+                            avatar={<Button onClick={handleRefund}>赎回</Button>}
                             title={<a>{item.item.name}[{item.amount}$]</a>}
                             description={item.item.belong.company}
                         />
