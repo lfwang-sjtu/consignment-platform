@@ -10,14 +10,14 @@ const FieldSetCenter = ({
                             onFieldChange = () => {},
                             handleChooseField = () => {},
                         }) => {
-    //删除添加的布局字段
-    const handleDelete = (e, id) => {
+
+
+    const handleDelete = (e, index) => {
         e.stopPropagation();
         const newFieldList = [...fieldList];
-        const curIndex = newFieldList.findIndex((item) => item.id === id);
-        if (curIndex !== -1) {
-            let deleteItem = newFieldList.splice(curIndex, 1);
-            if (deleteItem?.[0]?.id === currentField?.id) {
+        if (index >= 0 && index < newFieldList.length) {
+            newFieldList.splice(index, 1);
+            if (currentField.id === fieldList[index].id) {
                 handleChooseField({});
             }
             onFieldChange(newFieldList);
@@ -56,7 +56,7 @@ const FieldSetCenter = ({
                             </div>
                             <CloseCircleFilled
                                 className="main-field-delete"
-                                onClick={(e) => handleDelete(e, item?.id)}
+                                onClick={(e) => handleDelete(e, index)}
                             />
                         </div>
                     );
