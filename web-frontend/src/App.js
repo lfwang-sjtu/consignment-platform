@@ -8,6 +8,7 @@ import MainView from "./view/com/MainView";
 import UserView from "./view/UserView";
 import ProductView from "./view/ProductView";
 import {useState} from "react";
+import LoginView from "./view/com/LoginView";
 
 function App() {
     // global state for user
@@ -17,6 +18,7 @@ function App() {
     return (
         <Router>
             <Routes>
+                <Route exact path="/login" element={<LoginView />} />
                 // company
                 <Route exact path="/com" element={<MainView />} />
                 <Route exact path="/com/process" element={<ComProcessView />} />
