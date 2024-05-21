@@ -9,6 +9,7 @@ import ManagerView from "./view/ManagerView";
 import {useState} from "react";
 import UserView from "./view/UserView";
 import ProductView from "./view/ProductView";
+import LoginView from "./view/com/LoginView";
 
 function App() {
     const [userInfo, setUserInfo] = useState();
@@ -21,6 +22,7 @@ function App() {
         <Router>
             <Routes>
                 {/*非原子服务， 单独的处理页面（公司信息、费用清单、事务处理）*/}
+                <Route exact path="/login" element={<LoginView />} />
                 <Route exact path="/com" element={<MainView />} />
                 {/*<Route path="/com/fee" element={<FeeView />} />*/}
                 {/*<Route path="/com/tx_handle" element={<TXView />} />*/}
