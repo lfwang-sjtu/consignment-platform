@@ -150,7 +150,7 @@ handle_tx
             "business": "refund",
             "process": ["check_user", "confirm_order", "earn", "end_tx"]
         },
-        {   
+        {
             //上传
             "business": "uploadProduct",
             "process": ["check_company", "check_agreement", "submit_product_info"]
