@@ -21,7 +21,7 @@ function AgreementCheck(props) {
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
         //TODO: 对RMP平台的CompanyUser.agreement数据进行处理
-        fetch("http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/", {
+        fetch("http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/", {
             method: "GET",
         })
             .then((response) => response.json())

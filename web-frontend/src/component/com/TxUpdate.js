@@ -159,7 +159,7 @@ function TxUpdate(props) {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch("http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/",{
+        fetch("http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/",{
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -173,7 +173,7 @@ function TxUpdate(props) {
     }, []);
 
     useEffect(() => {
-        fetch("http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/",{
+        fetch("http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/",{
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -247,7 +247,7 @@ function TxUpdate(props) {
         console.log(record);
         record.type = 2;
         //TODO:对RMP平台的TX数据进行处理，并且修改data进行页面刷新
-        fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/${record.id}`,{
+        fetch(`http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/${record.id}`,{
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
@@ -257,6 +257,12 @@ function TxUpdate(props) {
             .then((response) => response.json())
             .then((result) => {
                 console.log("Success:", result);
+                //TODO: 对User的Balance余额进行修改
+
+                //从values获取交易金额
+
+                //先GET到User的Balance，再PUT修改
+
             })
             .catch((error) => {
                 console.error("Error:", error);

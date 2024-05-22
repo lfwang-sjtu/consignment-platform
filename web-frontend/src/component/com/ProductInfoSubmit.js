@@ -42,7 +42,7 @@ function ProductInfoSubmit(props){
 
         console.log(JSON.stringify(newValues));
         //TODO: 拼接values的status、createDate和belong
-        fetch('http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Product/', {
+        fetch('http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Product/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

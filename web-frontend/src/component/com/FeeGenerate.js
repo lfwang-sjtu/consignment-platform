@@ -14,7 +14,8 @@ function FeeGenerate(props) {
     function handleClick() {
         console.log('click');
         //TODO:对RMP平台的Transaction数据进行处理
-
+        
+        // 具体如何生成服务费（遍历每个TX数据，根据所属的Product和交易的金额，进行处理）
     }
 
     // const companyName = localStorage.getItem('company_name');
