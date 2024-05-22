@@ -7,6 +7,26 @@
         {
             "business": "refund",
             "process": ["check_user", "select_order", "add_money", "add_tx"]
+        },
+        {
+            "business": "uploadProduct",
+            "process": ["check_company", "check_agreement", "submit_product_info"]
+        },
+        {   
+            "business": "agreement",
+            "process": ["check_company", "submit_agreement"]
+        },
+        {   
+            "business": "makeOrder",
+            "process": ["check_company", "update_tx"]
+        },
+        {   
+            "business": "redemption",
+            "process": ["check_company", "update_tx"]
+        },
+        {   
+            "business": "fee",
+            "process": ["check_company", "generateFee"]
         }
     ]
 }

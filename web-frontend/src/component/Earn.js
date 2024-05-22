@@ -20,7 +20,7 @@ function Earn() {
                 <Col span={12}>114514 月</Col>
             </Row>
             <Row gutter={16}>
-                <Col span={12}><strong>总金额:</strong></Col>
+                <Col span={12}><strong>经过公司确认后，您将得到总金额:</strong></Col>
                 <Col span={12}>250 元</Col>
             </Row>
         </Card>

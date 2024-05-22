@@ -7,11 +7,10 @@ function ConfirmOrder(props) {
     }
     function renderStatus (status) {
         // 根据状态渲染不同的 Tag 样式，假设状态有 "Pending", "Completed", "Cancelled" 等
-        let color;
         switch (status) {
             case 'buy':
                 return <Tag color={'orange'}>购买</Tag>;
-            case 'earn':
+            case 'refund':
                 return <Tag color={'green'}>赎回</Tag>;
             default:
                 return <Tag color={'blue'}>未知状态</Tag>;
@@ -30,7 +29,7 @@ function ConfirmOrder(props) {
                 <strong>下单时间:</strong> 1145-05-15
             </div>
             <div>
-                <strong>状态:</strong> {renderStatus(props.status)}
+                <strong>状态:</strong> {renderStatus(props.userBusiness)}
             </div>
             <Button onClick={handleConfirm}>确认执行</Button>
         </Card>

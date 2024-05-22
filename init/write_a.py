@@ -24,7 +24,7 @@ headers = {
 
 # 发送 IndividualUser 数据
 for a in data['a']:
-    url = 'http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/test'  # 请替换为 IndividualUser 请求的 URL
+    url = 'http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/test'  # 请替换为 IndividualUser 请求的 URL
 
     # 打印即将发送的数据
     print("发送的数据:", a)

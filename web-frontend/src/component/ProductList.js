@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Button, Input, message, Table} from "antd";
 import {useNavigate} from "react-router-dom";
-function ProductList() {
+import {get} from "../util/fetch";
+function ProductList(props) {
     /*
     * 搜索关键字
     * 产品列表
@@ -268,6 +269,8 @@ function ProductList() {
     ]);
     const navigate = useNavigate();
 
+    get("Product");
+
     useEffect(() => {
         const userPurchases = userTxData.map(tx => tx.item);
         const similarityScores = [];
@@ -313,10 +316,11 @@ function ProductList() {
 
         const sortedProducts = similarityScores.map(score => score.product);
         setProductData(sortedProducts);
-    }, [userTxData]);
+    }, [userTxData, productData]);
 
     function handleRowClick(record) {
         message.info("I know you click[" + record.name + "]");
+        props.setUserProduct(record)
         navigate("/product_details/" + record.id);
     }
 

@@ -7,8 +7,10 @@ import ConfirmOrder from "../component/ConfirmOrder";
 import AddTx from "../component/AddTx";
 import Earn from "../component/Earn";
 import EndTx from "../component/EndTx";
+import {useNavigate} from "react-router-dom";
 
 function ProcessView(props) {
+    const navigate = useNavigate();
     const [process, setProcess] = useState([
         {
             "process": "check_user,confirm_order,add_tx",
@@ -58,7 +60,12 @@ function ProcessView(props) {
             case 'confirm_order':
                 result = (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <ConfirmOrder setConfirmOrderResult={setConfirmOrderResult} />
+                        <ConfirmOrder
+                            setConfirmOrderResult={setConfirmOrderResult}
+                            createTxInfo={props.createTxInfo}
+                            updateTxInfo={props.updateTxInfo}
+                            userBusiness={props.userBusiness}
+                        />
                         {confirmOrderResult ? (
                             <Tag color="green">完成</Tag>
                         ) : (
@@ -189,6 +196,7 @@ function ProcessView(props) {
             default:
                 message.info("untracked atomic service!");
         }
+        navigate("/")
     }
 
     const { token } = theme.useToken();
