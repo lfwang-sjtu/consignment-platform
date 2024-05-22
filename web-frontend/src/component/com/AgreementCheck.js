@@ -26,6 +26,10 @@ function AgreementCheck(props) {
         })
             .then((response) => response.json())
             .then((result) => {
+                if(result.data.length === 0){
+                    message.error("公司不存在！");
+                    return;
+                }
                 if (Array.isArray(result.data)) {
                     // Attention，筛选出来的是数组数据
                     const companyUser = result.data.filter(user => user.username === companyInfo.username);

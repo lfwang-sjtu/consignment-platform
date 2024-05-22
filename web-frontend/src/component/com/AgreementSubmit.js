@@ -22,6 +22,10 @@ function AgreementSubmit(props) {
         })
             .then((response) => response.json())
             .then((result) => {
+                if(result.data.length === 0){
+                    message.error("公司不存在！");
+                    return;
+                }
                 if(result.data === null){
                     message.error("公司不存在");
                 }else{
