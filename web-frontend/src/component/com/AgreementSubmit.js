@@ -17,7 +17,7 @@ function AgreementSubmit(props) {
     }
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
-        fetch(`http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/?CompanyUser.username=vanguard_admin`, {
+        fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/?CompanyUser.username=vanguard_admin`, {
             method: "GET",
         })
             .then((response) => response.json())
@@ -31,7 +31,7 @@ function AgreementSubmit(props) {
                 }else{
                     // 修改agreement的值
                     result.data[0].agreement = values.agreement;
-                    fetch(`http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/${result.data[0].id}` ,{
+                    fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/${result.data[0].id}` ,{
                         method: "PUT",
                         headers: {
                             'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ function CompanyCheck(props) {
     }
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
-        fetch("http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/", {
+        fetch("http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/", {
             method: "GET",
         })
             .then((response) => response.json())

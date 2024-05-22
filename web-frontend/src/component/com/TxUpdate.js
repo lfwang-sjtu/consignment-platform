@@ -161,7 +161,7 @@ function TxUpdate(props) {
     const [flag, setFlag] = useState('');
 
     useEffect(() => {
-        fetch("http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/",{
+        fetch("http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/",{
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -176,7 +176,7 @@ function TxUpdate(props) {
     }, []);
 
     useEffect(() => {
-        fetch("http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/",{
+        fetch("http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/",{
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -257,7 +257,7 @@ function TxUpdate(props) {
         // }
 
         //TODO:对RMP平台的TX数据进行处理，并且修改data进行页面刷新
-        fetch(`http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/${record.id}`,{
+        fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/${record.id}`,{
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
@@ -270,7 +270,7 @@ function TxUpdate(props) {
                 //TODO: 对User的Balance余额进行修改
 
                 // 用户信息为record.buyer.username，先GET到用户的余额
-                fetch(`http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/IndividualUser/?IndividualUser.username=${record.buyer.username}`, {
+                fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/IndividualUser/?IndividualUser.username=${record.buyer.username}`, {
                     method: "GET",
                 })
                     .then((response) => response.json())
@@ -293,7 +293,7 @@ function TxUpdate(props) {
                 //从values获取交易金额为record.amount，修改用户余额
                 console.log(middleData);
                 console.log(record.buyer.id)
-                fetch(`http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/IndividualUser/${record.buyer.id}` ,{
+                fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/IndividualUser/${record.buyer.id}` ,{
                     method: "PUT",
                     headers: {
                         'Content-Type': 'application/json',
