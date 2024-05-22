@@ -12,14 +12,25 @@ function LoginView() {
     const [userInfo, setUserInfo] = useState('');
     const onFinish = (values) => {
         console.log(values);
-
+        // 如果values是company，那么fetch到CompanyUser
+        // 如果values是personal，那么fetch到IndividualUser
+        const userType = values.userType === "company" ? "CompanyUser" : "IndividualUser";
+        console.log(userType)
+        fetch(`http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/${userType}/?${userType}.username=${values.username}`, {
+            method: "GET",
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                localStorage.setItem(userType, JSON.stringify(result.data[0]));
+            })
     }
 
     return (
         <Layout style={{minHeight: "100vh"}}>
             <Header theme="dark" mode="horizontal">
             </Header>
-            <Content style={{padding: '10 80px', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <Content style={{padding: '10 80px', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                     <div>
                         <img src={logo} alt="logo"/>
                     </div>
