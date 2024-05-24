@@ -10,11 +10,12 @@ function CompanyCheck(props) {
     function cancelConfirm() {
         props.setCheckCompanyResult(false);
     }
-    // const companyInfo = localStorage.getItem('company');
-    const companyInfo = {
-        username: "vanguard_admin",
-        password: "vanguard123"
-    }
+    const companyInfo = JSON.parse(localStorage.getItem('CompanyUser'));
+    console.log(companyInfo);
+    // const companyInfo = {
+    //     username: "vanguard_admin",
+    //     password: "vanguard123"
+    // }
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
         fetch("http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/", {

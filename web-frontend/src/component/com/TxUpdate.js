@@ -202,7 +202,7 @@ function TxUpdate(props) {
 
     // 筛选购买待处理1和赎回待处理3的数据
     const filterData = data ? data.filter(item => item.item.belong.company === companyName
-        && (item.status === 2)) : null;
+        && (item.status === 1 || item.status === 3)) : null;
 
     const columns = [
         {
@@ -248,14 +248,11 @@ function TxUpdate(props) {
     const handleClick = (record) => {
         message.info('点击处理');
         console.log(record);
-        setFlag(record);
-
-        // if(record.status === 1){
-        //     record.status = 2; //购买已处理
-        // }else{
-        //     record.status = 4; //赎回已处理
-        // }
-
+        if(record.status === 1){
+            record.status = 2; //购买已处理
+        }else{
+            record.status = 4; //赎回已处理
+        }
         //TODO:对RMP平台的TX数据进行处理，并且修改data进行页面刷新
         fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/${record.id}`,{
             method: "PUT",
@@ -266,29 +263,28 @@ function TxUpdate(props) {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log("Success:", result);
+                console.log("fetch1:", result);
                 //TODO: 对User的Balance余额进行修改
-
                 // 用户信息为record.buyer.username，先GET到用户的余额
                 fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/IndividualUser/?IndividualUser.username=${record.buyer.username}`, {
                     method: "GET",
                 })
                     .then((response) => response.json())
                     .then((result) => {
+                        console.log("fetch2:", result);
                         if(result.data.length === 0){
                             message.error("TX不存在！");
                             return;
                         }
-                        console.log("Success:", result);
-                        // if(record.status === 2){
-                        //     result.balance -= record.amount;
-                        // }else{
-                        //     result.balance += record.amount;
-                        // }
+                        if(record.status === 2){
+                            result.data[0].balance -= record.amount;
+                        }else{
+                            result.data[0].balance += record.amount;
+                        }
 
                         // 需要将result.data[0]结合原本的TX数据，生成新的TX数据
                         record.buyer = result.data[0];
-                        setMiddleData(JSON.stringify(record));
+                        setMiddleData(JSON.stringify(record.buyer));
                     })
                 //从values获取交易金额为record.amount，修改用户余额
                 console.log(middleData);
@@ -302,11 +298,10 @@ function TxUpdate(props) {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        console.log("Success:", result);
+                        console.log("fetch3:", result);
                     })
                 })
-
-
+        setFlag(record);
     }
 
     return (

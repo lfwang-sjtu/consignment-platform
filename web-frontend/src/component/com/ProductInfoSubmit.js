@@ -39,8 +39,12 @@ function ProductInfoSubmit(props){
         values.minInvest = Number(values.minInvest);
         values.rate = Number(values.rate);
         values.risk = Number(values.risk);
-        const newValues = {...values, status: 1, createDate: "2024-01-01", belong: belong};
-
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const currentDate = `${year}-${month}-${day}`;
+        const newValues = {...values, status: 1, createDate: currentDate, belong: belong};
         console.log(JSON.stringify(newValues));
         //TODO: 拼接values的status、createDate和belong
         fetch('http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Product/', {
@@ -53,7 +57,7 @@ function ProductInfoSubmit(props){
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-        })
+            })
     };
 
     return (
