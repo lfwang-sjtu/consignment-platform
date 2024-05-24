@@ -16,11 +16,15 @@ function UserView(props) {
     const renderContent = () => {
         switch (menuKey) {
             case "1":
-                return <ProductList setUserProduct={props.setUserProduct}/>
+                return <ProductList
+                    setUserProduct={props.setUserProduct}
+                    userInfo={props.userInfo}
+                />
             case "2":
                 return <TransactionList
+                    userInfo={props.userInfo}
                     setUserBusiness={props.setUserBusiness}
-                    setUpdateTxInfo={props.setUpdateTxInfo}
+                    setCreateTxInfo={props.setCreateTxInfo}
                 />
             case "3":
                 return <UserInfo userInfo={props.userInfo}/>

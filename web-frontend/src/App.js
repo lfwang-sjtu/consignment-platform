@@ -35,12 +35,16 @@ function App() {
         "name": "safe medicare"
     });
     const [createTxInfo, setCreateTxInfo] = useState({
-        "amount": 100,
-        "name": "this product"
+        "userid": 1,
+        "productid": 1,
+        "amount": 1000,
+        "name": "this product",
+        "date": "1970-01-01",
+        "status": 0, // 0 means create, 1 means refund
+        "id": 1,
+        "rate": 0.01
     });
-    const [updateTxInfo, setUpdateTxInfo] = useState({
-        "all": null
-    })
+    const [income, setIncome] = useState("");
 
     return (
         <Router>
@@ -56,17 +60,20 @@ function App() {
                     userInfo={userInfo}
                     setUserBusiness={setUserBusiness}
                     setUserProduct={setUserProduct}
-                    setUpdateTxInfo={setUpdateTxInfo}
+                    setCreateTxInfo={setCreateTxInfo}
                 />} />
                 <Route exact path="/product_details/:id" element={<ProductView
+                    userInfo={userInfo}
                     userProduct={userProduct}
                     setUserBusiness={setUserBusiness}
                     setCreateTxInfo={setCreateTxInfo}
                 />} />
                 <Route exact path="/userprocess" element={<ProcessView
+                    userInfo={userInfo}
                     userBusiness={userBusiness}
                     createTxInfo={createTxInfo}
-                    updateTxInfo={updateTxInfo}
+                    setIncome={setIncome}
+                    income={income}
                 />} />
             </Routes>
         </Router>

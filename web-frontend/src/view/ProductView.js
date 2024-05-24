@@ -1,6 +1,6 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {Content, Footer, Header} from "antd/es/layout/layout";
-import {Button, Descriptions, Layout, Menu} from "antd";
+import {Button, Descriptions, InputNumber, Layout, Menu, message} from "antd";
 import FootInfo from "../component/FootInfo";
 import React, {useEffect, useState} from "react";
 import Title from "antd/es/skeleton/Title";
@@ -11,15 +11,35 @@ function ProductView(props) {
     const navigate = useNavigate();
     const { id } = useParams();
 
+    const [amount, setAmount] = useState(0);
+
     useEffect(() => {
         // Fetch product data based on id
         // setProduct
     }, [id]);
 
     function handleBuy() {
-        //
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1；padStart函数用于保证月份和日期为两位数，不足补0
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+
+        props.setCreateTxInfo({
+            "userid": props.userInfo.id,
+            "productid": props.userProduct.id,
+            "amount": amount,
+            "name": props.userProduct.name,
+            "date": formattedDate,
+            "status": 0,
+            "rate": props.userProduct.rate
+        });
         props.setUserBusiness("buy");
         navigate("/userprocess");
+    }
+
+    function handleAmountChange(value) {
+        setAmount(value);
     }
 
     return(
@@ -33,7 +53,7 @@ function ProductView(props) {
                         <div>
                             <Title level={2}>{props.userProduct.name}</Title>
                             <Paragraph>{props.userProduct.description}</Paragraph>
-                            <Descriptions title="Product Details" bordered>
+                            <Descriptions title={props.userProduct.name} bordered>
                                 <Descriptions.Item label="Minimum Investment">
                                     ${props.userProduct.minInvest}
                                 </Descriptions.Item>
@@ -62,6 +82,11 @@ function ProductView(props) {
                                     {props.userProduct.belong.joinDate}
                                 </Descriptions.Item>
                             </Descriptions>
+                            <InputNumber
+                                size="small"
+                                value={amount}
+                                onChange={handleAmountChange}
+                            />
                             <Button onClick={handleBuy}>购买</Button>
                         </div>
                     ) : (

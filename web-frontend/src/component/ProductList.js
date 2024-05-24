@@ -87,32 +87,6 @@ function ProductList(props) {
             "type": 1,
             "status": 1,
             "createDate": "2023-03-10"
-        },
-        {
-            "belong": {
-                "manageFee": 0.02,
-                "address": "55 East 52nd Street, New York, NY, USA",
-                "agreement": "This agreement outlines the terms and conditions for BlackRock's products to be sold on the platform.",
-                "password": "blackrock123",
-                "joinDate": "1988-03-01",
-                "phone": "212-810-5300",
-                "intro": "BlackRock is a global investment management corporation based in New York City. Founded in 1988.",
-                "company": "BlackRock",
-                "id": 2,
-                "email": "admin@blackrock.com",
-                "username": "blackrock_admin",
-                "status": 1
-            },
-            "minInvest": 1000.0,
-            "rate": 0.07,
-            "name": "Global Equity Fund",
-            "description": "This fund provides exposure to a diversified portfolio of global equities, seeking long-term capital appreciation.",
-            "risk": 2,
-            "term": 24.0,
-            "id": 4,
-            "type": 1,
-            "status": 1,
-            "createDate": "2022-09-05"
         }
     ]);
     const [userTxData, setUserTxData] = useState([
@@ -267,12 +241,29 @@ function ProductList(props) {
             }
         }
     ]);
+    const [sortedProduct, setSortedProduct] = useState(null);
     const navigate = useNavigate();
 
-    get("Product");
-
-    useEffect(() => {
-        const userPurchases = userTxData.map(tx => tx.item);
+    function handleUpdate() {
+        message.info("getting product and tx info")
+        get("Product")
+            .then(data => {
+                console.log(data);
+                setProductData(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        get("Transaction")
+            .then(data => {
+                setUserTxData(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        const filteredTxData = userTxData.filter(tx => tx.buyer.username === props.userInfo.username);
+        console.log(filteredTxData);
+        const userPurchases = filteredTxData.map(tx => tx.item);
         const similarityScores = [];
 
         const minRisk = Math.min(...productData.map(product => product.risk));
@@ -315,8 +306,8 @@ function ProductList(props) {
         similarityScores.sort((a, b) => b.totalSimilarity - a.totalSimilarity);
 
         const sortedProducts = similarityScores.map(score => score.product);
-        setProductData(sortedProducts);
-    }, [userTxData, productData]);
+        setSortedProduct(sortedProducts);
+    }
 
     function handleRowClick(record) {
         message.info("I know you click[" + record.name + "]");
@@ -326,6 +317,7 @@ function ProductList(props) {
 
     function handleSearch() {
         message.info("别叫");
+        setSortedProduct(null);
     }
 
     const columns = [
@@ -386,8 +378,9 @@ function ProductList(props) {
                 style={{ marginBottom: '16px' }}
             />
             <Button type="primary" onClick={handleSearch}>搜索</Button>
+            <Button type="primary" onClick={handleUpdate}>更新</Button>
             <Table
-                dataSource={productData}
+                dataSource={sortedProduct}
                 columns={columns}
                 pagination={false}
                 onRow={(record) => ({

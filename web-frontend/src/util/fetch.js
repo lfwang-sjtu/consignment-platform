@@ -1,4 +1,4 @@
-const u = 'http://202.120.40.107:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/'
+const u = 'http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/'
 
 function request(url, options = {}) {
     return fetch(u + url, options)

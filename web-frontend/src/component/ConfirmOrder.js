@@ -14,25 +14,26 @@ function ConfirmOrder(props) {
                 return <Tag color={'green'}>赎回</Tag>;
             default:
                 return <Tag color={'blue'}>未知状态</Tag>;
-                break;
         }
     };
     return (
-        <Card style={{ maxWidth: 600, margin: '20px auto', padding: '20px' }}>
-            <div style={{ marginBottom: '16px' }}>
-                <strong>产品名称:</strong> 稳健医疗
-            </div>
-            <div style={{ marginBottom: '16px' }}>
-                <strong>购买数量:</strong> 1000$
-            </div>
-            <div style={{ marginBottom: '16px' }}>
-                <strong>下单时间:</strong> 1145-05-15
-            </div>
-            <div>
-                <strong>状态:</strong> {renderStatus(props.userBusiness)}
-            </div>
-            <Button onClick={handleConfirm}>确认执行</Button>
-        </Card>
+        <div>
+            <Card style={{ maxWidth: 600, margin: '20px auto', padding: '20px' }}>
+                <div style={{ marginBottom: '16px' }}>
+                    <strong>产品名称:</strong> {props.createTxInfo.name}
+                </div>
+                <div style={{ marginBottom: '16px' }}>
+                    <strong>购买数量:</strong> {props.createTxInfo.amount}
+                </div>
+                <div style={{ marginBottom: '16px' }}>
+                    <strong>下单时间:</strong> {props.createTxInfo.date}
+                </div>
+                <div>
+                    <strong>状态:</strong> {renderStatus(props.userBusiness)}
+                </div>
+                <Button onClick={handleConfirm}>确认执行</Button>
+            </Card>
+        </div>
     );
 }
 
