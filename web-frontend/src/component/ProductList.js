@@ -249,7 +249,7 @@ function ProductList(props) {
         get("Product")
             .then(data => {
                 console.log(data);
-                setProductData(data);
+                setProductData(data.filter(pro => pro.status === 2));       // only authorized product
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
