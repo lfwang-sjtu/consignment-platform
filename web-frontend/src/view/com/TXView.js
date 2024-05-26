@@ -1,7 +1,5 @@
 import {Table, Button, Modal, Select, Layout, Menu} from 'antd';
 import React, {useEffect, useState} from "react";
-import {Footer, Header} from "antd/es/layout/layout";
-import FootInfo from "../../component/FootInfo";
 const { Option } = Select;
 
 function TXView() {
@@ -170,8 +168,9 @@ function TXView() {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => {
-                setData(data);
+            .then(result => {
+                console.log(result.data);
+                setData(result.data);
             })
     }, []);
 
@@ -180,8 +179,8 @@ function TXView() {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => {
-                setData(data);
+            .then(result => {
+                setData(result.data);
             })
     }, [flag]);
 
@@ -247,21 +246,46 @@ function TXView() {
         setModalVisible(false);
     };
 
-    const handleClick = () => {
+    const handleOKModal = () => {
+        console.log(selectedOption);
+        console.log(currentMessage);
+        currentMessage.status = selectedOption === "2" ? 2 : selectedOption === "4" ? 4 : selectedOption === "5" ? 5 : 6;
 
-    }
+        fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Transaction/${currentMessage.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(currentMessage)
+        })
+            .then(response => response.json())
+            .then(data => {
+                setFlag(currentMessage)
+            })
+        setModalVisible(false);
+    };
+
+    const filterData = data ? data.filter(item => (item.status === 1 || item.status === 3)) : null;
+
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleChange = (value) => {
+        setSelectedOption(value);
+        console.log(`selected ${value}`);
+    };
 
     return (
             <div>
                 <h1>TXView</h1>
-                <Table columns={columns} dataSource={data}/>
+                <Table columns={columns} dataSource={filterData}/>
                 <Modal title="Handle Message" visible={modalVisible} onCancel={handleCloseModal}
-                       onOk={handleCloseModal}>
+                       onOk={handleOKModal}>
                     <p>{currentMessage?.message}</p>
-                    <Select placeholder="Select a handling option">
-                        <Option value="option1">Option 1</Option>
-                        <Option value="option2">Option 2</Option>
-                        {/* More options... */}
+                    <Select placeholder="Select a handling option" onChange={handleChange}>
+                        <Option value="2">处理购买</Option>
+                        <Option value="4">处理赎回</Option>
+                        <Option value="5">购买失败</Option>
+                        <Option value="6">赎回失败</Option>
                     </Select>
                 </Modal>
             </div>
