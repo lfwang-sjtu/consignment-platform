@@ -43,13 +43,15 @@ function LoginView() {
     const handleRegister = (values) => {
         console.log('Received values of form: ', values);
         values.manageFee = Number(values.manageFee);
+
         const date = new Date();
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
         const currentDate = `${year}-${month}-${day}`;
+
         const newValues = {...values, status: 0, joinDate: currentDate};
-        console.log(JSON.stringify(newValues));
+        console.log(newValues);
         // TODO: 发送注册请求
         fetch('http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/CompanyUser/', {
             method: 'POST',
