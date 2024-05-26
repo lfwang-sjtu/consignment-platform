@@ -58,19 +58,19 @@ function App() {
                 // manager
                 <Route exact path="/process" element={<AtomicService />} />
                 // user
-                <Route exact path="/" element={<UserView
+                <Route exact path="/user/userview" element={<UserView
                     userInfo={userInfo}
                     setUserBusiness={setUserBusiness}
                     setUserProduct={setUserProduct}
                     setCreateTxInfo={setCreateTxInfo}
                 />} />
-                <Route exact path="/product_details/:id" element={<ProductView
+                <Route exact path="/user/product_details/:id" element={<ProductView
                     userInfo={userInfo}
                     userProduct={userProduct}
                     setUserBusiness={setUserBusiness}
                     setCreateTxInfo={setCreateTxInfo}
                 />} />
-                <Route exact path="/userprocess" element={<ProcessView
+                <Route exact path="/user/process" element={<ProcessView
                     userInfo={userInfo}
                     userBusiness={userBusiness}
                     createTxInfo={createTxInfo}

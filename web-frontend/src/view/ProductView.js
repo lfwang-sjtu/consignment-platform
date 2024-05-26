@@ -35,7 +35,7 @@ function ProductView(props) {
             "rate": props.userProduct.rate
         });
         props.setUserBusiness("buy");
-        navigate("/userprocess");
+        navigate("/user/process");
     }
 
     function handleAmountChange(value) {

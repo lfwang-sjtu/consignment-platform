@@ -174,7 +174,7 @@ function TransactionList(props) {
             "rate": record.item.rate
         });
         props.setUserBusiness("refund");
-        navigate("/userprocess");
+        navigate("/user/process");
     }
 
     return(

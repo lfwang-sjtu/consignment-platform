@@ -312,7 +312,7 @@ function ProductList(props) {
     function handleRowClick(record) {
         message.info("I know you click[" + record.name + "]");
         props.setUserProduct(record)
-        navigate("/product_details/" + record.id);
+        navigate("/user/product_details/" + record.id);
     }
 
     function handleSearch() {

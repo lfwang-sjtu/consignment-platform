@@ -18,7 +18,18 @@ function LoginView() {
         console.log(values);
         // 如果values是company，那么fetch到CompanyUser
         // 如果values是personal，那么fetch到IndividualUser
-        const userType = values.userType === "company" ? "CompanyUser" : "IndividualUser";
+        let userType = values.userType === "company" ? "CompanyUser" : "IndividualUser";
+        switch (values.userType) {
+            case "company":
+                userType = "CompanyUser";
+                break;
+            case "personal":
+                userType = "IndividualUser";
+                break;
+            case "manager":
+                userType = "PlatformManager";
+                break;
+        }
         console.log(userType)
         fetch(`http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/${userType}/?${userType}.username=${values.username}`, {
             method: "GET",
@@ -36,7 +47,13 @@ function LoginView() {
                 message.success("登录成功！");
                 console.log("fetch1: " , result.data)
                 localStorage.setItem(userType, JSON.stringify(result.data[0]));
-                navigate("/com")
+                if (values.userType === "company") {
+                    navigate("/com");
+                } else if (values.userType === "personal") {
+                    navigate("/user/userview");
+                } else if (values.userType === "manager") {
+                    navigate("/manager/Product");
+                }
             })
     }
 
@@ -91,6 +108,7 @@ function LoginView() {
                             <Select placeholder="Select a user type">
                                 <Option value="company">Company User</Option>
                                 <Option value="personal">Personal User</Option>
+                                <Option value="manager">Manager User</Option>
                             </Select>
                         </Form.Item>
                         <Form.Item>

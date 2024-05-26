@@ -190,7 +190,7 @@ function ProcessView(props) {
             default:
                 message.info("untracked atomic service!");
         }
-        navigate("/")
+        navigate("/user/userview")
     }
 
     const { token } = theme.useToken();
