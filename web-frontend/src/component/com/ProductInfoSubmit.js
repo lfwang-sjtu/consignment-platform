@@ -16,12 +16,35 @@ function ProductInfoSubmit(props){
         console.log('Received values of form: ', values);
         //TODO: 对RMP平台的Product数据进行处理,提交values(values + 后端获取的belong数据)
 
-        // const belong = JSON.parse(localStorage.getItem('belong'));
-        const belong = null;
+        const belong = JSON.parse(localStorage.getItem('CompanyUser'));
+        console.log(belong);
+        // const belong = {
+        //     "manageFee": 0.01,
+        //     "address": "100 Vanguard Blvd, Malvern, PA, USA",
+        //     "agreement": "123",
+        //     "password": "vanguard123",
+        //     "joinDate": "1975-09-24",
+        //     "phone": "800-662-2739",
+        //     "intro": "Vanguard is one of the world's largest investment companies, offering a large selection of low-cost mutual funds, ETFs, advice, and related services.",
+        //     "company": "Vanguard Group",
+        //     "id": 1,
+        //     "email": "admin@vanguard.com",
+        //     "username": "vanguard_admin",
+        //     "status": 1
+        // };
+
         // 手动修改属性
         values.type = Number(values.type);
-        const newValues = {...values, status: 0, createData: "2024-01-01", belong: belong};
-
+        values.term = Number(values.term);
+        values.minInvest = Number(values.minInvest);
+        values.rate = Number(values.rate);
+        values.risk = Number(values.risk);
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const currentDate = `${year}-${month}-${day}`;
+        const newValues = {...values, status: 1, createDate: currentDate, belong: belong};
         console.log(JSON.stringify(newValues));
         //TODO: 拼接values的status、createDate和belong
         fetch('http://202.120.40.86:14642/rmp-resource-service/project/66289c8cdffd2d00144103a2/resource/Product/', {
@@ -29,12 +52,12 @@ function ProductInfoSubmit(props){
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(values)
+            body: JSON.stringify(newValues)
         })
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-        })
+            })
     };
 
     return (

@@ -7,16 +7,18 @@ import ConfirmOrder from "../component/ConfirmOrder";
 import AddTx from "../component/AddTx";
 import Earn from "../component/Earn";
 import EndTx from "../component/EndTx";
+import {useNavigate} from "react-router-dom";
 
 function ProcessView(props) {
+    const navigate = useNavigate();
     const [process, setProcess] = useState([
         {
-            "process": "check_user,confirm_order,add_tx",
+            "process": "check_user,confirm_order,send_tx",
             "business": "buy",
             "id": 1
         },
         {
-            "process": "check_user,confirm_order,end_tx,earn",
+            "process": "check_user,confirm_order,send_tx,earn",
             "business": "refund",
             "id": 2
         }
@@ -46,7 +48,10 @@ function ProcessView(props) {
                 // 要求用户验证身份，用户输入密码，如果密码正确就进入下一步，否则不能进入下一步
                 result = (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <CheckUser setCheckUserResult={setCheckUserResult}/>
+                        <CheckUser
+                            setCheckUserResult={setCheckUserResult}
+                            userInfo={props.userInfo}
+                        />
                         {checkUserResult ? (
                             <Tag color="green">完成</Tag>
                         ) : (
@@ -58,7 +63,11 @@ function ProcessView(props) {
             case 'confirm_order':
                 result = (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <ConfirmOrder setConfirmOrderResult={setConfirmOrderResult} />
+                        <ConfirmOrder
+                            setConfirmOrderResult={setConfirmOrderResult}
+                            userBusiness={props.userBusiness}
+                            createTxInfo={props.createTxInfo}
+                        />
                         {confirmOrderResult ? (
                             <Tag color="green">完成</Tag>
                         ) : (
@@ -67,23 +76,15 @@ function ProcessView(props) {
                     </div>
                 );
                 break;
-            case 'add_tx':
+            case 'send_tx':
                 result = (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <AddTx setAddTxResult={setAddTxResult} />
+                        <AddTx
+                            setAddTxResult={setAddTxResult}
+                            createTxInfo={props.createTxInfo}
+                            setIncome={props.setIncome}
+                        />
                         {addTxResult ? (
-                            <Tag color="green">完成</Tag>
-                        ) : (
-                            <Tag color="red">未完成</Tag>
-                        )}
-                    </div>
-                );
-                break;
-            case 'end_tx':
-                result = (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <EndTx setEndTxResult={setEndTxResult} />
-                        {endTxResult ? (
                             <Tag color="green">完成</Tag>
                         ) : (
                             <Tag color="red">未完成</Tag>
@@ -94,7 +95,7 @@ function ProcessView(props) {
             case 'earn':
                 result = (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <Earn setEarnResult={setEarnResult} />
+                        <Earn setEarnResult={setEarnResult} income={props.income}/>
                         {earnResult ? (
                             <Tag color="green">完成</Tag>
                         ) : (
@@ -189,6 +190,7 @@ function ProcessView(props) {
             default:
                 message.info("untracked atomic service!");
         }
+        navigate("/user/userview")
     }
 
     const { token } = theme.useToken();

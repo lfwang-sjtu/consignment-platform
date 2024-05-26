@@ -8,17 +8,21 @@ function CheckUser(props) {
     };
     function handleSubmit () {
         // todo
-        props.setCheckUserResult(true);
+        if (password === props.userInfo.password) {
+            props.setCheckUserResult(true);
+        } else {
+            props.setCheckUserResult(false);
+        }
     };
 
     return (
         <div style={{ maxWidth: 400, margin: '0 auto', padding: '20px', border: '1px solid #d9d9d9', borderRadius: '4px' }}>
             <Form layout="vertical">
                 <Form.Item label="用户名">
-                    <Input value={props.username} disabled />
+                    <Input value={props.userInfo.username} disabled />
                 </Form.Item>
                 <Form.Item label="真实姓名">
-                    <Input value={props.realname} disabled />
+                    <Input value={props.userInfo.realname} disabled />
                 </Form.Item>
                 <Form.Item label="密码" required>
                     <Input.Password value={password} onChange={handlePasswordChange} placeholder="请输入密码" />

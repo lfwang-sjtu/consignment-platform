@@ -1,6 +1,6 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {Content, Footer, Header} from "antd/es/layout/layout";
-import {Button, Descriptions, Layout, Menu} from "antd";
+import {Button, Descriptions, InputNumber, Layout, Menu, message} from "antd";
 import FootInfo from "../component/FootInfo";
 import React, {useEffect, useState} from "react";
 import Title from "antd/es/skeleton/Title";
@@ -9,35 +9,9 @@ import Paragraph from "antd/es/skeleton/Paragraph";
 function ProductView(props) {
     console.log(props);
     const navigate = useNavigate();
-    const [product, setProduct] = useState(
-        {
-            "belong": {
-                "manageFee": 0.01,
-                "address": "100 Vanguard Blvd, Malvern, PA, USA",
-                "agreement": "This agreement outlines the terms and conditions for Vanguard's products to be sold on the platform.",
-                "password": "vanguard123",
-                "joinDate": "1975-09-24",
-                "phone": "800-662-2739",
-                "intro": "Vanguard is one of the world's largest investment companies, offering a large selection of low-cost mutual funds, ETFs, advice, and related services.",
-                "company": "Vanguard Group",
-                "id": 1,
-                "email": "admin@vanguard.com",
-                "username": "vanguard_admin",
-                "status": 1
-            },
-            "minInvest": 500.0,
-            "rate": 0.08,
-            "name": "Stable Growth Fund",
-            "description": "This fund aims to provide stable growth opportunities through a diversified investment portfolio for long-term returns.",
-            "risk": 1,
-            "term": 12.0,
-            "id": 1,
-            "type": 1,
-            "status": 1,
-            "createDate": "2023-01-15"
-        }
-    );
     const { id } = useParams();
+
+    const [amount, setAmount] = useState(0);
 
     useEffect(() => {
         // Fetch product data based on id
@@ -45,9 +19,27 @@ function ProductView(props) {
     }, [id]);
 
     function handleBuy() {
-        //
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1；padStart函数用于保证月份和日期为两位数，不足补0
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+
+        props.setCreateTxInfo({
+            "userid": props.userInfo.id,
+            "productid": props.userProduct.id,
+            "amount": amount,
+            "name": props.userProduct.name,
+            "date": formattedDate,
+            "status": 0,
+            "rate": props.userProduct.rate
+        });
         props.setUserBusiness("buy");
-        navigate("/userprocess");
+        navigate("/user/process");
+    }
+
+    function handleAmountChange(value) {
+        setAmount(value);
     }
 
     return(
@@ -57,39 +49,44 @@ function ProductView(props) {
             </Header>
             <Content style={{ padding: '0 50px', flex: 1 }}>
                 <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-                    {product ? (
+                    {props.userProduct ? (
                         <div>
-                            <Title level={2}>{product.name}</Title>
-                            <Paragraph>{product.description}</Paragraph>
-                            <Descriptions title="Product Details" bordered>
+                            <Title level={2}>{props.userProduct.name}</Title>
+                            <Paragraph>{props.userProduct.description}</Paragraph>
+                            <Descriptions title={props.userProduct.name} bordered>
                                 <Descriptions.Item label="Minimum Investment">
-                                    ${product.minInvest}
+                                    ${props.userProduct.minInvest}
                                 </Descriptions.Item>
                                 <Descriptions.Item label="Interest Rate">
-                                    {product.rate * 100}%
+                                    {props.userProduct.rate * 100}%
                                 </Descriptions.Item>
-                                <Descriptions.Item label="Term">{product.term} months</Descriptions.Item>
-                                <Descriptions.Item label="Risk Level">{product.risk}</Descriptions.Item>
+                                <Descriptions.Item label="Term">{props.userProduct.term} months</Descriptions.Item>
+                                <Descriptions.Item label="Risk Level">{props.userProduct.risk}</Descriptions.Item>
                                 <Descriptions.Item label="Status">
-                                    {product.status === 1 ? 'Active' : 'Inactive'}
+                                    {props.userProduct.status === 1 ? 'Active' : 'Inactive'}
                                 </Descriptions.Item>
                                 <Descriptions.Item label="Create Date">
-                                    {product.createDate}
+                                    {props.userProduct.createDate}
                                 </Descriptions.Item>
                             </Descriptions>
                             <Title level={3}>Belonging Company</Title>
                             <Descriptions bordered>
-                                <Descriptions.Item label="Company">{product.belong.company}</Descriptions.Item>
-                                <Descriptions.Item label="Email">{product.belong.email}</Descriptions.Item>
-                                <Descriptions.Item label="Phone">{product.belong.phone}</Descriptions.Item>
-                                <Descriptions.Item label="Address">{product.belong.address}</Descriptions.Item>
+                                <Descriptions.Item label="Company">{props.userProduct.belong.company}</Descriptions.Item>
+                                <Descriptions.Item label="Email">{props.userProduct.belong.email}</Descriptions.Item>
+                                <Descriptions.Item label="Phone">{props.userProduct.belong.phone}</Descriptions.Item>
+                                <Descriptions.Item label="Address">{props.userProduct.belong.address}</Descriptions.Item>
                                 <Descriptions.Item label="Introduction">
-                                    {product.belong.intro}
+                                    {props.userProduct.belong.intro}
                                 </Descriptions.Item>
                                 <Descriptions.Item label="Join Date">
-                                    {product.belong.joinDate}
+                                    {props.userProduct.belong.joinDate}
                                 </Descriptions.Item>
                             </Descriptions>
+                            <InputNumber
+                                size="small"
+                                value={amount}
+                                onChange={handleAmountChange}
+                            />
                             <Button onClick={handleBuy}>购买</Button>
                         </div>
                     ) : (

@@ -114,8 +114,11 @@ add_tx
 end_tx
 更改Transaction的状态为3
 
+pay
+处理用户购买订单，将TX status改为2，并且从用户账户里扣款
+
 earn
-向用户展示获得的收益
+处理用户赎回订单，将TX status改为4，并且向用户账户转账
 
 check_agreement
 检查公司是否已经签署协议，如果已经签署，那么进入下一步，否则返回主页
@@ -163,12 +166,12 @@ handle_tx
         {   
             //
             "business": "makeOrder",
-            "process": ["check_company", "update_tx", "pay"]
+            "process": ["check_company", "update_tx"]
         },
         {   
             //赎回
             "business": "redemption",
-            "process": ["check_company", "update_tx", "earn"]
+            "process": ["check_company", "update_tx"]
         },
         {   
             //费用结算
@@ -179,3 +182,12 @@ handle_tx
 }
 
 ```
+|business|1|2|3|4|5|
+| - | - | - | - | - | - |
+|buy|check_user|confirm_order|add_tx|||
+|refund|check_user|confirm_order|end_tx|||
+|uploadProduct|check_company|check_agreement|submit_product_info|||
+|agreement|check_company|submit_agreement|||||
+|makeOrder|check_company|update_tx||||||
+|redemption|check_company|update_tx||||||
+|fee|check_company|generateFee|||||
