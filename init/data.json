@@ -2,11 +2,11 @@
     "IndividualUser": [
       {
         "username": "user1",
-        "password": "password1",
+        "password": "password",
         "balance": 10000,
         "email": "user1@example.com",
         "phone": "0000000000",
-        "realname": "John Doe",
+        "realname": "wlf",
         "idcard": "123456789012345678",
         "birthDate": "1990-01-01",
         "address": "123 Main St, City, Country",
@@ -17,11 +17,11 @@
       },
       {
         "username": "user2",
-        "password": "password2",
+        "password": "password",
         "balance": 10000,
         "email": "user2@example.com",
         "phone": "0000000001",
-        "realname": "Jane Smith",
+        "realname": "ljm",
         "idcard": "234567890123456789",
         "birthDate": "1992-02-02",
         "address": "456 Oak St, City, Country",
@@ -32,11 +32,11 @@
       },
       {
         "username": "user3",
-        "password": "password3",
+        "password": "password",
         "balance": 10000,
         "email": "user3@example.com",
         "phone": "0000000002",
-        "realname": "Alice Johnson",
+        "realname": "wjh",
         "idcard": "345678901234567890",
         "birthDate": "1988-03-03",
         "address": "789 Elm St, City, Country",
@@ -81,6 +81,32 @@
         "agreement": "This agreement outlines the terms and conditions for BlackRock's products to be sold on the platform.",
         "joinDate": "1988-03-01",
         "manageFee": 0.02
+      },
+      {
+        "company": "Fidelity Investments",
+        "password": "fidelity123",
+        "username": "fidelity_admin",
+        "email": "admin@fidelity.com",
+        "phone": "800-343-3548",
+        "address": "245 Summer Street, Boston, MA, USA",
+        "intro": "Fidelity Investments is a multinational financial services corporation based in Boston, Massachusetts.",
+        "status": 1,
+        "agreement": "This agreement outlines the terms and conditions for Fidelity Investments' products to be sold on the platform.",
+        "joinDate": "1946-05-01",
+        "manageFee": 0.015
+      },
+      {
+        "company": "Charles Schwab Corporation",
+        "password": "schwab123",
+        "username": "schwab_admin",
+        "email": "admin@schwab.com",
+        "phone": "800-435-4000",
+        "address": "211 Main Street, San Francisco, CA, USA",
+        "intro": "The Charles Schwab Corporation is an American multinational financial services company.",
+        "status": 1,
+        "agreement": "This agreement outlines the terms and conditions for Charles Schwab Corporation's products to be sold on the platform.",
+        "joinDate": "1971-05-01",
+        "manageFee": 0.018
       }
     ],
     "Product": [
@@ -93,7 +119,7 @@
         "minInvest": 500.00,
         "term": 12,
         "manageFee": 0.015,
-        "status": 1,
+        "status": 2,
         "createDate": "2023-01-15",
         "belong": {"id": 1}
       },
@@ -119,7 +145,7 @@
         "minInvest": 1000.00,
         "term": 36,
         "manageFee": 0.015,
-        "status": 1,
+        "status": 2,
         "createDate": "2023-03-10",
         "belong": {"id": 2}
       },
@@ -131,9 +157,60 @@
         "rate": 0.07,
         "minInvest": 1000.00,
         "term": 24,
-        "status": 1,
+        "status": 2,
         "createDate": "2022-09-05",
         "belong": {"id": 2}
+      },
+      {
+        "name": "Emerging Market Opportunities Fund",
+        "description": "This fund seeks growth opportunities in emerging markets by investing in a diversified portfolio of equities and bonds.",
+        "type": 1,
+        "risk": 2,
+        "rate": 0.09,
+        "minInvest": 750.00,
+        "term": 18,
+        "manageFee": 0.02,
+        "status": 2,
+        "createDate": "2023-05-20",
+        "belong": {"id": 3}
+      },
+      {
+        "name": "Real Estate Investment Trust Fund",
+        "description": "This fund invests in real estate investment trusts (REITs) to provide income and potential for capital appreciation.",
+        "type": 1,
+        "risk": 3,
+        "rate": 0.10,
+        "minInvest": 1500.00,
+        "term": 24,
+        "manageFee": 0.018,
+        "status": 1,
+        "createDate": "2023-08-12",
+        "belong": {"id": 3}
+      },
+      {
+        "name": "Environmental Sustainability Fund",
+        "description": "This fund focuses on investments in companies promoting environmental sustainability and responsible resource management.",
+        "type": 1,
+        "risk": 3,
+        "rate": 0.13,
+        "minInvest": 1200.00,
+        "term": 36,
+        "manageFee": 0.015,
+        "status": 2,
+        "createDate": "2023-04-05",
+        "belong": {"id": 4}
+      },
+      {
+        "name": "Healthcare Innovation Fund",
+        "description": "This fund invests in innovative healthcare companies aiming to transform the industry through technological advancements and novel therapies.",
+        "type": 1,
+        "risk": 2,
+        "rate": 0.08,
+        "minInvest": 1000.00,
+        "term": 24,
+        "status": 2,
+        "createDate": "2023-02-18",
+        "belong": {"id": 4}
       }
     ],
     "Transaction": [
@@ -142,27 +219,54 @@
         "type": 1,
         "amount": 1000,
         "status": 2,
-        "note": "du SE du de",
+        "note": "we are rich!",
         "buyer": {"id": 1},
         "item": {"id": 1}
       },
       {
         "orderDate": "2024-05-14",
         "type": 1,
-        "amount": 100,
+        "amount": 500,
         "status": 2,
-        "note": "du SE du de",
+        "note": "mushroom!",
         "buyer": {"id": 1},
         "item": {"id": 1}
       },
       {
         "orderDate": "2024-05-15",
         "type": 1,
-        "amount": 100,
+        "amount": 500,
         "status": 2,
-        "note": "du SE du de",
-        "buyer": {"id": 2},
-        "item": {"id": 2}
+        "note": "rock and stone!",
+        "buyer": {"id": 1},
+        "item": {"id": 1}
+      },
+      {
+        "orderDate": "2024-05-15",
+        "type": 1,
+        "amount": 500,
+        "status": 2,
+        "note": "rock and stone!",
+        "buyer": {"id": 1},
+        "item": {"id": 1}
+      },
+      {
+        "orderDate": "2024-05-15",
+        "type": 1,
+        "amount": 500,
+        "status": 2,
+        "note": "rock and stone!",
+        "buyer": {"id": 1},
+        "item": {"id": 1}
+      },
+      {
+        "orderDate": "2024-05-15",
+        "type": 1,
+        "amount": 500,
+        "status": 4,
+        "note": "rock and stone!",
+        "buyer": {"id": 1},
+        "item": {"id": 1}
       }
     ]
 }

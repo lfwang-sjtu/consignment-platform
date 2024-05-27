@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Form, Input} from "antd";
+import {Button, Form, Input, message} from "antd";
 
 function CheckUser(props) {
     const [password, setPassword] = useState('');
@@ -8,7 +8,7 @@ function CheckUser(props) {
     };
     function handleSubmit () {
         // todo
-        if (password === props.userInfo.password) {
+        if (password === JSON.parse(localStorage.getItem('IndividualUser')).password) {
             props.setCheckUserResult(true);
         } else {
             props.setCheckUserResult(false);
@@ -19,10 +19,10 @@ function CheckUser(props) {
         <div style={{ maxWidth: 400, margin: '0 auto', padding: '20px', border: '1px solid #d9d9d9', borderRadius: '4px' }}>
             <Form layout="vertical">
                 <Form.Item label="用户名">
-                    <Input value={props.userInfo.username} disabled />
+                    <Input value={JSON.parse(localStorage.getItem('IndividualUser')).username} disabled />
                 </Form.Item>
                 <Form.Item label="真实姓名">
-                    <Input value={props.userInfo.realname} disabled />
+                    <Input value={JSON.parse(localStorage.getItem('IndividualUser')).realname} disabled />
                 </Form.Item>
                 <Form.Item label="密码" required>
                     <Input.Password value={password} onChange={handlePasswordChange} placeholder="请输入密码" />

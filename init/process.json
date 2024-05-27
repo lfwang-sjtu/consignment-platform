@@ -2,11 +2,11 @@
     "Orchestration": [
         {
             "business": "buy",
-            "process": ["check_user","confirm_order", "sub_money", "add_tx"]
+            "process": ["check_user","confirm_order", "send_tx"]
         },
         {
             "business": "refund",
-            "process": ["check_user", "select_order", "add_money", "add_tx"]
+            "process": ["check_user", "confirm_order", "send_tx", "earn"]
         },
         {
             "business": "uploadProduct",

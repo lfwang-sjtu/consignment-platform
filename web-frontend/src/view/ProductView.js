@@ -26,7 +26,7 @@ function ProductView(props) {
         const formattedDate = `${year}-${month}-${day}`;
 
         props.setCreateTxInfo({
-            "userid": props.userInfo.id,
+            "userid": JSON.parse(localStorage.getItem('IndividualUser')).id,
             "productid": props.userProduct.id,
             "amount": amount,
             "name": props.userProduct.name,

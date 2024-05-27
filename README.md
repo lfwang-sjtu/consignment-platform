@@ -70,7 +70,7 @@ financial product consignment platform
     "minInvest": 500.00,
     "term": 12,
     "manageFee": 0.015,
-    "status": 1,
+    "status": 1,        // 1未上架，2已上架
     "createDate": "2023-01-15",
     "belong": {"id": 1}
 }
@@ -184,8 +184,8 @@ handle_tx
 ```
 |business|1|2|3|4|5|
 | - | - | - | - | - | - |
-|buy|check_user|confirm_order|add_tx|||
-|refund|check_user|confirm_order|end_tx|||
+|buy|check_user|confirm_order|send_tx|||
+|refund|check_user|confirm_order|send_tx|earn||
 |uploadProduct|check_company|check_agreement|submit_product_info|||
 |agreement|check_company|submit_agreement|||||
 |makeOrder|check_company|update_tx||||||

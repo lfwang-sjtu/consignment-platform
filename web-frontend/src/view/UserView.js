@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import ManagerInfo from "../component/ManagerInfo";
 import {Layout, Menu} from "antd";
 import FootInfo from "../component/FootInfo";
 import {Content, Header, Footer} from "antd/es/layout/layout";
