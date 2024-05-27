@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Alert, Button} from "antd";
+import {Alert, Button, message} from "antd";
 import {post, put} from "../util/fetch";
 
 function AddTx(props) {
@@ -30,7 +30,7 @@ function AddTx(props) {
                 "buyer": {"id": props.createTxInfo.userid},
                 "item": {"id": props.createTxInfo.productid},
             }
-            put("Transaction/" + props.createTxInfo.id, data_json);
+            put("Transaction/", props.createTxInfo.id, data_json);
         }
         props.setAddTxResult(true);
     }

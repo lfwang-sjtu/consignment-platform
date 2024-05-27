@@ -50,7 +50,7 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route exact path="/login" element={<LoginView />} />
+                <Route exact path="/" element={<LoginView />} />
                 // company
                 <Route exact path="/com" element={<MainView />} />
                 <Route exact path="/com/process" element={<ComProcessView />} />

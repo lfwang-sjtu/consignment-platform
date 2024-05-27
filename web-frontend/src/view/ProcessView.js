@@ -1,13 +1,13 @@
 import {Content, Footer, Header} from "antd/es/layout/layout";
 import {Button, Layout, List, Menu, message, Steps, Tag, theme} from "antd";
 import FootInfo from "../component/FootInfo";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import CheckUser from "../component/CheckUser";
 import ConfirmOrder from "../component/ConfirmOrder";
 import AddTx from "../component/AddTx";
 import Earn from "../component/Earn";
-import EndTx from "../component/EndTx";
 import {useNavigate} from "react-router-dom";
+import {get} from "../util/fetch";
 
 function ProcessView(props) {
     const navigate = useNavigate();
@@ -23,6 +23,18 @@ function ProcessView(props) {
             "id": 2
         }
     ]);
+    useEffect(() => {
+        // todo fetch process info
+        console.log("fetching process info~");
+        get("Orchestration")
+            .then(data => {
+                console.log(data);
+                setProcess(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
     const currentProcess = process.find(item => item.business === props.userBusiness)?.process.split(',') || [];
     const steps = currentProcess.map((step, index) => ({
         title: `Step ${index + 1}`,
@@ -38,7 +50,6 @@ function ProcessView(props) {
     const [checkUserResult, setCheckUserResult] = useState(false);
     const [confirmOrderResult, setConfirmOrderResult] = useState(false);
     const [addTxResult, setAddTxResult] = useState(false);
-    const [endTxResult, setEndTxResult] = useState(false);
     const [earnResult, setEarnResult] = useState(false);
 
     function getAtomicService(current) {
@@ -124,16 +135,10 @@ function ProcessView(props) {
                     setConfirmOrderResult(false);
                 }
                 break;
-            case 'add_tx':
+            case 'send_tx':
                 if (addTxResult) {
                     setCurrent(current + 1);
                     setAddTxResult(false);
-                }
-                break;
-            case 'end_tx':
-                if (endTxResult) {
-                    setCurrent(current + 1);
-                    setEndTxResult(false);
                 }
                 break;
             case 'earn':
@@ -166,18 +171,11 @@ function ProcessView(props) {
                     setConfirmOrderResult(false);
                 }
                 break;
-            case 'add_tx':
+            case 'send_tx':
                 if (addTxResult) {
                     message.success('Processing complete!');
                     setCurrent(0);
                     setAddTxResult(false);
-                }
-                break;
-            case 'end_tx':
-                if (endTxResult) {
-                    message.success('Processing complete!');
-                    setCurrent(0);
-                    setEndTxResult(false);
                 }
                 break;
             case 'earn':

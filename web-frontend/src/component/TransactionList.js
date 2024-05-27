@@ -63,10 +63,10 @@ function TransactionList(props) {
             }
         },
     ]);
-    const [holdTx, setHoldTx] = useState(null);
-    const [historyTx, setHistoryTx] = useState(null);
-    const [waitTx, setWaitTx] = useState(null);
-    const [failTx, setFailTx] = useState(null);
+    const [holdTx, setHoldTx] = useState([]);
+    const [historyTx, setHistoryTx] = useState([]);
+    const [waitTx, setWaitTx] = useState([]);
+    const [failTx, setFailTx] = useState([]);
     const [source, setSource] = useState([{
         "note": "du SE du de",
         "amount": 100.0,
@@ -108,8 +108,9 @@ function TransactionList(props) {
     function handleUpdate() {
         get("Transaction")
             .then(data => {
-                const user = data.filter(tx => tx.buyer.id === props.userInfo.id);
+                const user = data.filter(tx => tx.buyer.id === JSON.parse(localStorage.getItem('IndividualUser')).id);
                 const hold = user.filter(tx => tx.status === 2);
+                console.log(user);
                 const history = user.filter(tx => tx.status === 4);
                 const wait = user.filter(tx => (tx.status === 1 || tx.status === 3));
                 const fail = user.filter(tx => (tx.status === 5 || tx.status === 6));
@@ -164,7 +165,7 @@ function TransactionList(props) {
     function handleRefund(record) {
         console.log(record);
         props.setCreateTxInfo({
-            "userid": props.userInfo.id,
+            "userid": JSON.parse(localStorage.getItem('IndividualUser')).id,
             "productid": record.item.id,
             "amount": record.amount,
             "name": record.item.name,
@@ -191,11 +192,15 @@ function TransactionList(props) {
                         key={record.id}
                     >
                         <List.Item.Meta
-                            avatar={<Button onClick={() => handleRefund(record)}>赎回</Button>}
                             title={<a>{record.item.name}[{record.amount}$]</a>}
                             description={record.item.belong.company}
                         />
+                        {record.status === 1 ? (<p1>待处理的购买订单,</p1>) : null}
+                        {record.status === 3 ? (<p1>待处理的赎回订单,</p1>) : null}
                         购买日期[{record.orderDate}],交易ID[{record.id}],注释[{record.note}]
+                        {current === 'own' ? (
+                            <Button onClick={() => handleRefund(record)}>赎回</Button>
+                        ) : null}
                     </List.Item>
                 )}
             />
