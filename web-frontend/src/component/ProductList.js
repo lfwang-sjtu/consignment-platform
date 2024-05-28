@@ -267,8 +267,33 @@ function ProductList(props) {
     }
 
     function handleSearch() {
-        message.info("别叫");
-        setSortedProduct(null);
+        if (searchKeyword.trim() === '') {
+            message.warning('搜索内容不能为空');
+            return;
+        }
+        else {
+            message.info("searching products");
+            const filteredProducts = productData.filter(product =>
+                product.name.toLowerCase().includes(searchKeyword.toLowerCase())
+            );
+            setSortedProduct(filteredProducts);
+        }
+    }
+
+
+    function handleLowRisk() {
+        const lowRiskProducts = productData.filter(product => product.risk === 1);
+        setSortedProduct(lowRiskProducts);
+    }
+
+    function handleMidRisk() {
+        const midRiskProducts = productData.filter(product => product.risk === 2);
+        setSortedProduct(midRiskProducts);
+    }
+
+    function handleHighRisk() {
+        const highRiskProducts = productData.filter(product => product.risk === 3);
+        setSortedProduct(highRiskProducts);
     }
 
     const columns = [
@@ -330,6 +355,9 @@ function ProductList(props) {
             />
             <Button type="primary" onClick={handleSearch}>搜索</Button>
             <Button type="primary" onClick={handleUpdate}>更新</Button>
+            <Button type="primary" onClick={handleLowRisk}>仅低风险</Button>
+            <Button type="primary" onClick={handleMidRisk}>仅中风险</Button>
+            <Button type="primary" onClick={handleHighRisk}>仅高风险</Button>
             <Table
                 dataSource={sortedProduct}
                 columns={columns}
